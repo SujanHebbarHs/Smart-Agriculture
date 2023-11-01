@@ -143,14 +143,14 @@ app.post("/forget",async(req,res)=>{
             host: "smtp.gmail.com",
             port: 465,
             auth: {
-              user: "sharathchandrasharath00007@gmail.com",
-              pass: "ayut ykun fibu dsbb",
+              user: process.env.EMAIL_HOST,
+              pass: process.env.EMAIL_PASS,
             },
         });
     
         const mailOptions = {
             from: '"Support" <supportcustomer@gmail.com>',
-            to: "luffyhebbarhs@gmail.com",
+            to: email,
             subject: "Reset Password",
             text: `You have requested to reset your password. Click on the link to reset your password ${link}`,
         }
