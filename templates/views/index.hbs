@@ -1,0 +1,308 @@
+<DOCTYPE html>
+
+    <html>
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" href="/Images/Logo.jpg" type="image/x-icon">
+
+
+        <!--==Title==================================-->
+        <title>
+
+            Smart Agriculture
+
+        </title>
+
+        <!--==Stylesheet=============================-->
+        <link rel="stylesheet" type="text/css" href="/CSS/Home Page CSS.css">
+
+        <!-- bootstrap css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+        <!-- bootstrap icons  -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <!--==Fav-icon===============================-->
+        <link rel="shortcut icon" href="images/fav-icon.png" />
+
+        <!--==Using-Font-Awesome=====================-->
+        <script src="https://kit.fontawesome.com/5471644867.js" crossorigin="anonymous"></script>
+
+        <script src='/script/Home Page JS.js' defer></script>
+        <link rel="stylesheet" href="/CSS/index.css">
+        <script src="home.js"></script>
+        <!-- <link rel="shortcut icon" type="image/jpg" href="C:\Users\hp\Desktop\College\First Semester\Introduction To Web Technologies\Notepad ++ Files\Project\favicon.ico"/> -->
+        <style>
+            .counter {
+                display: inline-block;
+            }
+
+            .btn-secondary {
+                background-color: #6c757d;
+                color: #fff;
+            }
+        </style>
+    </head>
+
+    <body style="background-color: #87e390;">
+
+
+        {{>navbar}}
+
+        <div class="search-bar d-block d-md-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form class="form-inline mb-3 mx-auto">
+                            <input class="form-control" type="search" placeholder="Search for products..."
+                                aria-label="Search">
+                            <button class="btn btn-success" type="submit"><i class="bx bx-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        
+
+
+
+        <!--nav-end--------------------->
+        <!--==Search-banner=======================================-->
+        <section id="search-banner">
+
+            <!--bg--------->
+
+
+            <!--text------->
+            <div class="search-banner-text">
+
+                <h1>
+
+                    Order Your daily Groceries
+
+                </h1>
+
+                <strong>
+
+                    #Free Delivery
+
+                </strong>
+
+                <!--search-box------>
+                <form action="" class="search-box">
+
+                    <!--icon------>
+                    <i class="fas fa-search"></i>
+
+                    <!--input----->
+                    <input type="text" class="search-input" placeholder="Search" name="search" size="80px" required>
+
+                    <!--btn------->
+                    <input type="submit" class="search-btn" value="Search">
+
+                </form>
+
+                <button id="createCardButton" class="btn btn-primary">Create Card</button>
+
+
+                </h3>
+
+            </div>
+
+        </section>
+
+        <!--search-banner-end--------------->
+
+
+        <!--==category=========================================-->
+
+        <!--category-end----------------------------------->
+        <!--==Products====================================-->
+        <section id="fruits" style="background-color: ecf7ee;">
+            <div class="container">
+                <!-- Heading -->
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3>Fruits</h3>
+                    </div>
+                </div>
+
+                <!-- Product Containers -->
+                <div class="row  justify-content-center" id="cardContainer">
+                    <!-- Product Box -->
+                    <div class="col-md-4 ">
+                        <div class="product-box">
+                            <img src="https://i.imgur.com/Zm8Xo2j.png" alt="pack" class="img-fluid">
+                            <strong>Big Pack</strong>
+                            <span class="price">Rs. 500</span>
+                            <!-- Cart Button -->
+                            <a href="Shopping Cart HTML.html" class="btn btn-success">
+                                <i class="bi bi-cart-fill"></i> Add to Cart
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <!-- Product Box -->
+                    <div class="col-md-4 ">
+                        <div class="product-box">
+                            <img src="images/fruits.jpg" alt="apple" class="img-fluid">
+                            <strong>Large Pack</strong>
+                            <span class="price">Rs. 800</span>
+                            <!-- Cart Button -->
+                            <a href="Shopping Cart HTML.html" class="btn btn-success">
+                                <i class="fas fa-shopping-bag"></i> Add to Cart
+                            </a>
+                            <!-- Like Button -->
+                            <a class a="like-btn">
+                                <i class="far fa-heart"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Product Box -->
+                    <div class="col-md-4 ">
+                        <div class="product-box">
+                            <img src="https://i.imgur.com/CeVqxe2.png" alt="apple" class="img-fluid">
+                            <strong>Small Pack</strong>
+                            <span class="price">Rs. 300</span>
+                            <!-- Cart Button -->
+                            <a href="Shopping Cart HTML.html" class="btn btn-success">
+                                <i class="fas fa-shopping-bag"></i> Add to Cart
+                            </a>
+                            <!-- Like Button -->
+                            <a class="like-btn">
+                                <i class="far fa-heart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </section>
+        <!--popular-product-end--------------------->
+        <!--Popular-bundle-pack===================================-->
+        <section id="popular-bundle-pack">
+            <div class="container">
+                <!-- Heading -->
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3>Vegetables</h3>
+                    </div>
+                </div>
+
+                <!-- Product Containers -->
+                <div class="row">
+                    <!-- Product Box -->
+                    <div class="col-md-4">
+                        <div class="product-box">
+                            <img src="https://i.imgur.com/Zm8Xo2j.png" alt="pack" class="img-fluid">
+                            <strong>Big Pack</strong>
+
+                            <span class="price">Rs. 500</span>
+                            <!-- Cart Button -->
+                            <a href="Shopping Cart HTML.html" class="btn btn-success">
+                                <i class="fas fa-shopping-bag"></i> Add to Cart
+                            </a>
+                            <!-- Like Button -->
+                            <a class="like-btn">
+                                <i class="far fa-heart"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Product Box -->
+                    <div class="col-md-4">
+                        <div class="product-box">
+                            <img src="images/fruits.jpg" alt="apple" class="img-fluid">
+                            <strong>Large Pack</strong>
+
+                            <span class="price">Rs. 800</span>
+                            <!-- Cart Button -->
+                            <a href="Shopping Cart HTML.html" class="btn btn-success">
+                                <i class="fas fa-shopping-bag"></i> Add to Cart
+                            </a>
+                            <!-- Like Button -->
+                            <a class="like-btn">
+                                <i class="far fa-heart"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Product Box -->
+                    <div class="col-md-4">
+                        <div class="product-box">
+                            <img src="https://i.imgur.com/CeVqxe2.png" alt="apple" class="img-fluid">
+                            <strong>Small Pack</strong>
+
+                            <span class="price">Rs. 300</span>
+                            <!-- Cart Button -->
+                            <a href="Shopping Cart HTML.html" class="btn btn-success">
+                                <i class="fas fa-shopping-bag"></i> Add to Cart
+                            </a>
+                            <!-- Like Button -->
+                            <a class="like-btn">
+                                <i class="far fa-heart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--popular-bundle-pack-end-------------------------------->
+
+
+
+        <!--logo-section-end--------------------->
+        <!--==download-app====================================-->
+
+        <!--download-app-section-end------------------------->
+        <!--==Footer=============================================-->
+        <footer>
+            <div class="footer-container" id="contact">
+                <!--logo-container------>
+                <div class="footer-logo">
+                    <a href="/Images/Logo.jpg"><span>Smart</span>Agriculture</a>
+                    <!--social----->
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
+                        <a href="https://twitter.com/?lang=en-in"><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.youtube.com/"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <!--links------------------------->
+                <div class="footer-links">
+                    <strong>Product</strong>
+                    <ul>
+                        <li><a href="#">Fruits</a></li>
+                        <li><a href="#">vegetables</a></li>
+
+                    </ul>
+                </div>
+                <!--links------------------------->
+
+                <!--links-------------------------->
+                <div class="footer-links">
+                    <strong>Contact</strong>
+                    <ul>
+                        <li><a href="#">Phone : +1 NXX NXX-XXXX</a></li>
+                        <li><a href="#">Email : xyz@gmail.com</a></li>
+                        <li><a href="#">Cities we serve</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <p style="color: aliceblue;">Copyright ©2023 | All Rights Reserved</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+
+    </html>

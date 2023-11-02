@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<!--This is a login page made up with HTML,CSS and javascript-->
+
+<html>
+
+<head>
+
+    <title>
+
+        Login In/Sign Up
+
+    </title>
+
+    <link type="text/css" rel="stylesheet" href="/CSS/Login And Registration CSS.css">
+    <!-- bootstrap css  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="">
+
+    <script src="https://kit.fontawesome.com/5471644867.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+
+</head>
+
+<body>
+
+    <section class="imp">
+
+        <section>
+
+            <div class="login show" id="one">
+
+                <div class="textbox slide-left2">
+
+                    <div class="head">
+
+                        <h1>
+
+                            Sign In to Smart Agriculture
+
+                        </h1>
+
+                        <ul>
+
+                            <li>
+
+                                <i class="fab fa-facebook-f" style="cursor: pointer;"></i>
+
+                            </li>
+
+                            <li>
+
+                                <i class="fab fa-google-plus-g" style="cursor: pointer;"></i>
+
+                            </li>
+
+                            <li>
+
+                                <i class="fab fa-linkedin-in" style="cursor: pointer;"></i>
+
+                            </li>
+
+                        </ul>
+
+                        <h3 style="cursor: pointer;">
+
+                            or use your E-mail ID
+
+                        </h3>
+
+                    </div>
+
+                    <form action="/login" method="post" class="login-form">
+
+                        <input type="email" id="login_email" name="email" placeholder="EMAIL" style=" position: relative; 
+                        margin: 9px auto;
+                        border: none;
+                        font-size: 1.2em;
+                        padding: 1em 1.3em;
+                        background: #eae7e7;
+                        border-radius: 6px;
+                        width: 100%;" required>
+
+                        <input type="password" name="password" id="login_password" placeholder="PASSWORD" style=" position: relative;
+    margin: 9px auto;
+    border: none;
+    font-size: 1.2em;
+    padding: 1em 1.3em;
+    background: #eae7e7;
+    border-radius: 6px;
+    width: 100%;" required>
+
+                        <button id="forgot_password">
+
+                            <a href="/forget" style="cursor: pointer;">
+
+                                Forgot password?
+
+                            </a>
+
+                        </button>
+
+                        <button type="submit" class='sign_in_btn' style="color: white;">
+
+
+                                SIGN IN
+
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="sec show" id="two">
+
+                <div class="textbox slide-left">
+
+                    <h1>
+
+                        Not a member?
+
+                    </h1>
+
+                    <p>
+
+                        Sign up and start shopping.
+
+                    </p>
+
+                    <button id="b1" style="cursor: pointer;" class='prompt_sign_up'>
+
+                        SIGN UP
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <div class="sec hide" id="three">
+
+                <div class="textbox slide-left">
+
+                    <h1>
+
+                        Already a member?
+
+                    </h1>
+
+                    <p>
+
+                        Login to keep shopping.
+
+                    </p>
+
+                    <button id="b2" style="cursor: pointer;" class='prompt_sign_in'>
+
+                        SIGN IN
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="login hide container " id="four">
+
+                <div class="textbox slide-right container col-lg-12 md-6 ">
+
+                    <div class="head mt-0">
+
+                        <h1>
+
+                            Create Account
+
+                        </h1>
+
+                        <ul>
+
+                            <li>
+
+                                <i class="fab fa-facebook-f" style="cursor: pointer;"></i>
+
+                            </li>
+
+                            <li>
+
+                                <i class="fab fa-google-plus-g" style="cursor: pointer;"></i>
+
+                            </li>
+
+                            <li>
+
+                                <i class="fab fa-linkedin-in" style="cursor: pointer;"></i>
+
+                            </li>
+
+                        </ul>
+
+                        <h3 style="cursor: pointer;">
+
+                            or use your E-mail ID
+
+                        </h3>
+
+                    </div>
+                    <!-- First row first and second column. Name and email address -->
+                    <form action="/register" method="post" class="register-form" id="register-new-user">
+                        <div class="row">
+                            <div class="col-lg-6 md-4">
+
+
+                                <div class="input-group mt-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-person"></i>
+                                    </span>
+                                    <input type="text" class="form-control" required id="full-name" name="name"
+                                        style="background: #eae7e7; width: 80%;" placeholder="Full Name">
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6 md-4">
+                                <div class="input-group mt-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-envelope-fill"></i>
+                                    </span>
+                                    <input type="email" class="form-control" required id="email" name="email"
+                                        style="background: #eae7e7; width: 80%;" placeholder="E-mail">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Second row first and second column. Password and confirm password -->
+
+                        <div class="row">
+                            <div class="col-lg-6 md-4">
+                                <div class="input-group mt-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-file-lock"></i>
+                                    </span>
+                                    <input type="password" class="form-control" required id="register_password" name="password"
+                                        style="background: #eae7e7; width: 80%;" placeholder="Password" autocomplete="new-password">
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6 md-4">
+                                <div class="input-group mt-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-file-lock-fill"></i>
+                                    </span>
+                                    <input type="password" class="form-control" required id="register_confirm_password" name="cpassword"
+                                        style="background: #eae7e7; width: 80%;" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Password requirements modal  -->
+                        {{!-- <div class="modal fade" id="passwordRequirementsModal" tabindex="-1" role="dialog" aria-labelledby="passwordRequirementsLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="passwordRequirementsLabel">Password Requirements</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Password must contain at least 8 characters, including one uppercase letter, one digit, and one special character.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
+
+                        <!-- Address -->
+                        
+
+                        <div class="row">
+                            <div class="col-lg-6 md-4">
+                                <div class="input-group mt-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-globe-americas"></i>>
+                                    </span>
+                                    <select class="form-control rounded" id="country" style="cursor: not-allowed;"
+                                        disabled>
+                                        <option value="US">United States</option>
+                                    </select>
+                                    <div class="disabled-overlay"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6 md-4">
+                                <div class="input-group mt-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-buildings-fill"></i>
+                                    </span>
+                                    <select class="form-control" name="state" required id="selectState"
+                                        style="background: #eae7e7; width: 80%;">
+                                        <option value="" selected disabled>Select a state</option>
+                                        <option value="Alabama">Alabama</option>
+                                        <option value="Alaska">Alaska</option>
+                                        <option value="Arizona">Arizona</option>
+                                        <option value="Arkansas">Arkansas</option>
+                                        <option value="California">California</option>
+                                        <option value="Colorado">Colorado</option>
+                                        <option value="Connecticut">Connecticut</option>
+                                        <option value="Delaware">Delaware</option>
+                                        <option value="Florida">Florida</option>
+                                        <option value="Georgia">Georgia</option>
+                                        <option value="Hawaii">Hawaii</option>
+                                        <option value="Idaho">Idaho</option>
+                                        <option value="Illinois">Illinois</option>
+                                        <option value="Indiana">Indiana</option>
+                                        <option value="Iowa">Iowa</option>
+                                        <option value="Kansas">Kansas</option>
+                                        <option value="Kentucky">Kentucky</option>
+                                        <option value="Louisiana">Louisiana</option>
+                                        <option value="Maine">Maine</option>
+                                        <option value="Maryland">Maryland</option>
+                                        <option value="Massachusetts">Massachusetts</option>
+                                        <option value="Michigan">Michigan</option>
+                                        <option value="Minnesota">Minnesota</option>
+                                        <option value="Mississippi">Mississippi</option>
+                                        <option value="Missouri">Missouri</option>
+                                        <option value="Montana">Montana</option>
+                                        <option value="Nebraska">Nebraska</option>
+                                        <option value="Nevada">Nevada</option>
+                                        <option value="New Hampshire">New Hampshire</option>
+                                        <option value="New Jersey">New Jersey</option>
+                                        <option value="New Mexico">New Mexico</option>
+                                        <option value="New York">New York</option>
+                                        <option value="North Carolina">North Carolina</option>
+                                        <option value="North Dakota">North Dakota</option>
+                                        <option value="Ohio">Ohio</option>
+                                        <option value="Oklahoma">Oklahoma</option>
+                                        <option value="Oregon">Oregon</option>
+                                        <option value="Pennsylvania">Pennsylvania</option>
+                                        <option value="Rhode Island">Rhode Island</option>
+                                        <option value="South Carolina">South Carolina</option>
+                                        <option value="South Dakota">South Dakota</option>
+                                        <option value="Tennessee">Tennessee</option>
+                                        <option value="Texas">Texas</option>
+                                        <option value="Utah">Utah</option>
+                                        <option value="Vermont">Vermont</option>
+                                        <option value="Virginia">Virginia</option>
+                                        <option value="Washington">Washington</option>
+                                        <option value="West Virginia">West Virginia</option>
+                                        <option value="Wisconsin">Wisconsin</option>
+                                        <option value="Wyoming">Wyoming</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 md-6">
+                                <div class="input-group mt-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-bank"></i>
+                                    </span>
+                                    <input type="text" name="bankAcc" id="bankAccountNumber"
+                                        placeholder="Bank Account Number"  required
+                                        maxlength="12" style="background: #eae7e7;" class="form-control" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 md-6">
+                                <div class="input-group mt-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-bank2"></i>
+                                    </span>
+                                    <input type="text" name="CbankAcc" id="bankAccountNumberConfirm"
+                                        placeholder="Confirm Bank Account Number"  required
+                                        maxlength="12" style="background: #eae7e7;" class="form-control" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 md-4 sm-2">
+
+                                <div class="input-group mt-2">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-house"></i>
+                                    </span>
+                                    <label for="address" class="form-label mt-2 mx-1">Address</label>
+                                    <textarea class="form-control" name="address" id="address" placeholder="Enter your address"
+                                        style="width: 99%;resize: none;" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+
+
+
+
+
+
+
+
+
+
+                        <button type="submit" id="register-button" style="cursor: pointer;" class='sign_up_btn' style="color: rgb(0, 0, 0); ">
+
+
+                                Register
+
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <script src="/script/Login And Registration JS.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const register = require("../models/registers");
+const Register = require("../models/registers");
 
 const resetAuth = async(req, res, next)=>{
 
@@ -9,9 +9,10 @@ const resetAuth = async(req, res, next)=>{
         const secretKey = process.env.SECRET_KEY;
 
         const verifyUser = await jwt.verify(token, secretKey);
-        const user = await register.findOne({_id});
+        const user = await Register.findById({_id});
 
-        req.email = verifyUser.email;
+        req.email = user.email;
+        console.log(req.email);
 
         next();
 

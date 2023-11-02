@@ -5,8 +5,10 @@ const path = require("path");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const hbs = require("hbs");
+const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
-const register = require("./models/registers.js");
+const cookieParser = require("cookie-parser");
+const Register = require("./models/registers.js");
 const auth = require("./middleware/auth.js");
 const resetAuth = require("./middleware/resetAuth.js");
 
@@ -18,6 +20,7 @@ const templates_path = path.join(__dirname, "../templates", "views");
 const partials_path = path.join(__dirname, "../templates", "partials");
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(static_path));
 
@@ -25,17 +28,24 @@ app.set("view engine", "hbs");
 app.set("views", templates_path);
 hbs.registerPartials(partials_path);
 
+
 app.get("/", (req, res)=>{
-    res.send("This is a test home page");
+    res.render("index");
+});
+
+app.get("/test", auth, (req, res)=>{
+    res.send("Secret");
 });
 
 app.get("/register", (req, res)=>{
 
-    res.render("signup");
+    res.render("registration");
 });
 
 app.post("/register", async(req, res)=>{
+    
     try {
+        console.log("Inside");
         password = req.body.password;
         cpassword = req.body.cpassword;
 
@@ -44,21 +54,23 @@ app.post("/register", async(req, res)=>{
 
         if(password === cpassword && bankAcc === CbankAcc ){
             
-            const signup = new register({
+            const signup = new Register({
                 name : req.body.name,
                 email: req.body.email,
-                password: password,
+                password,
                 state: req.body.state,
-                bankAcc: bankAcc,
+                bankAcc,
                 address: req.body.address,
                 role: req.body.role,
             });
     
-            const token = signup.generateAuthToken();
+            const token = await signup.generateAuthToken();
+            console.log(signup._id);
+            console.log(signup.password);
 
-            const resp = await signup.save();
-            console.log(resp);
-            res.redirect("/login");
+            // const resp = await signup.save();
+            // console.log(resp);
+            res.redirect("/register");
 
         }
         else{
@@ -71,11 +83,6 @@ app.post("/register", async(req, res)=>{
     }
 });
 
-app.get("/login", (req, res)=>{
-
-    res.render("login");
-});
-
 app.post("/login", async(req, res)=>{
 
     try{
@@ -83,7 +90,7 @@ app.post("/login", async(req, res)=>{
         const email = req.body.email;
         const password = req.body.password;
 
-        const user = await register.findOne({email});
+        const user = await Register.findOne({email});
 
         if(user == null){
             res.status(400).json({msg:"Email not registered"});
@@ -94,7 +101,7 @@ app.post("/login", async(req, res)=>{
 
         if(match){
 
-            const token = user.generateAuthToken();
+            const token = await user.generateAuthToken();
 
             res.cookie("jwt",token,{
                 httpOnly:true
@@ -128,14 +135,14 @@ app.post("/forget",async(req,res)=>{
 
         const email = req.body.email;
 
-        const user = await register.findOne({email});
+        const user = await Register.findOne({email});
 
         if(user == null){
             res.status(400).json({msg:"User not found"});
             return;
         }
 
-        const token = user.forgetAuthToken();
+        const token = await user.forgetAuthToken();
         res.clearCookie("jwt");
         const link = `http://localhost:${PORT}/reset-password/${user._id}/${token}`;
         
@@ -168,7 +175,7 @@ app.post("/forget",async(req,res)=>{
 
 });
 
-app.get("/reset-password/:id/:token",resetAuth,(req, res)=>{
+app.get("/reset-password/:_id/:token",resetAuth,(req, res)=>{
 
     res.render("reset",{
         token:req.params.token,
@@ -177,23 +184,30 @@ app.get("/reset-password/:id/:token",resetAuth,(req, res)=>{
 
 });
 
-app.put("/reset-password/:token", async(req ,res)=>{
+app.post("/reset-password/:token", async(req ,res)=>{
 
     try{
 
-        const {password, cpassword} = req.body;
+        let {password, cpassword} = req.body;
         const token = req.params.token;
 
+        
         if(password !== cpassword){
             res.status(400).json({msg:"Password dont match"});
             return;
         }
+        password = await bcrypt.hash(password, 10);
 
         const secretKey = process.env.SECRET_KEY;
         const verifyUser = await jwt.verify(token, secretKey);
-        const user = await findByIdAndUpdate({_id: verifyUser._id},{$set:{password}},{new:true});
 
-        res.render("/login");
+
+        const user = await Register.findByIdAndUpdate({_id: verifyUser._id},{$set:{password}});
+        console.log(user);
+        console.log("password: "+password);
+        console.log("Password reset successfull");
+
+        res.redirect("/register");
         
     }catch(err){
         console.log(err);
@@ -206,20 +220,19 @@ app.get("/logout", auth, async(req, res)=>{
 
     try{
 
-        req.clearCookie("jwt");
+        res.clearCookie("jwt");
         req.user.tokens = [];
 
         await req.user.save();
-        res.redirect("/login");
+        res.redirect("/register");
 
     }catch(err){
-
-        req.clearCookie("jwt");
+        console.log(err);
         res.sendStatus(500);
+
     }
     
 });
-
 
 app.listen(PORT, (err)=>{
     if(err) throw err;

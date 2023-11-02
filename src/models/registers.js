@@ -35,7 +35,7 @@ const registersSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        required:true,
+        default:"consumer",
     },
     tokens:[
         {
@@ -99,15 +99,24 @@ registersSchema.methods.forgetAuthToken = async function(){
 
 registersSchema.pre("save", async function (next){
 
-    if(this.isModified("password")){
+    try{
 
-        this.password = await bcrypt.hash(this.password, 10);
-        console.log("Hash pass: "+this.password);
+        if(this.isModified("password")){
+
+            this.password = await bcrypt.hash(this.password, 10);
+            console.log("Hash pass: "+this.password);
+        }
+    
+        next();
+
+    }catch(err){
+        console.log(err);
+        resizeBy.status(500).json({msg:"Password not hased"});
     }
 
-    next();
     
-})
+    
+});
 
 const Register = new mongoose.model("Register", registersSchema);
 
