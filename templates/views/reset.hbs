@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,4 +13,94 @@
         <button type="submit">Submit</button>
     </form>
 </body>
+</html> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+    .panel-body {
+        font-size: 20px; /* Adjust the font size as needed */
+    }
+    .list-unstyled li {
+        font-size: 20px; /* Adjust the font size as needed */
+    }
+    .form-group input[type="email"] {
+        font-size: 20px; /* Adjust the font size as needed */
+        height: 50px; /* Increase the input field height */
+    }
+    .form-group .btn {
+        font-size: 24px; /* Adjust the font size as needed */
+        height: 50px; /* Increase the button height */
+    }
+</style>
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <div class="form-gap"></div>
+    <div class="container col-12">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <h3><i class="fa fa-lock fa-4x"></i></h3>
+                            <h1>Reset Your Password</h1>
+                            <div class="panel-body">
+
+                                <form id="register-form"  role="form" autocomplete="off" class="form"
+                                    action="/reset-password/{{token}}" method="post">
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <i class="bi bi-envelope-fill mt-3 mx-2"></i>
+                                            <input id="email" name="email" value="{{email}}"
+                                                class="form-control" type="email" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <i class="bi bi-lock mt-3 mx-2"></i>
+                                            <input id="password" name="password" placeholder="New Password"
+                                                class="form-control" type="password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <i class="bi bi-lock mt-3 mx-2"></i>
+                                            <input id="cpassword" name="cpassword" placeholder="Re-Enter Password"
+                                                class="form-control" type="password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block"
+                                            value="Reset Password" type="submit">
+                                    </div>
+
+                                    <input type="hidden" class="hide" name="token" id="token" value="">
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+</body>
+
 </html>
