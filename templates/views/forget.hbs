@@ -1,14 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+    .panel-body {
+        font-size: 20px; /* Adjust the font size as needed */
+    }
+    .list-unstyled li {
+        font-size: 20px; /* Adjust the font size as needed */
+    }
+    .form-group input[type="email"] {
+        font-size: 20px; /* Adjust the font size as needed */
+        height: 50px; /* Increase the input field height */
+    }
+    .form-group .btn {
+        font-size: 24px; /* Adjust the font size as needed */
+        height: 50px; /* Increase the button height */
+    }
+</style>
 </head>
+
 <body>
-    <form action="/forget" method="post">
-    <input type="text" name="email" placeholder="Email">
-    <button type="submit">Submit</button>
-    </form>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <div class="form-gap"></div>
+    <div class="container col-12">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <h3><i class="fa fa-lock fa-4x"></i></h3>
+                            <h1>Forgot your password?</h1>
+                            <p>Change your password in three easy steps. This will help you to secure your password!</p>
+                            <ol class="list-unstyled" style="text-align: left;" >
+                                <li><span class="text-primary text-medium">1. </span>Enter your email address below.
+                                </li>
+                                <li><span class="text-primary text-medium">2. </span>Our system will send you a
+                                    temporary link</li>
+                                <li><span class="text-primary text-medium">3. </span>Use the link to reset your password
+                                </li>
+                            </ol>
+                            <div class="panel-body">
+
+                                <form id="register-form" action="/forget" role="form" autocomplete="off" class="form"
+                                    method="post">
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <i class="bi bi-envelope-fill mt-3 mx-2"></i>
+                                            <input id="email" name="email" placeholder="email address"
+                                                class="form-control" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block"
+                                            value="Reset Password" type="submit">
+                                    </div>
+
+                                    <input type="hidden" class="hide" name="token" id="token" value="">
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{!-- <div class="container padding-bottom-3x mb-2 mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="forgot">
+
+                    <h2>Forgot your password?</h2>
+                    <p>Change your password in three easy steps. This will help you to secure your password!</p>
+                    <ol class="list-unstyled">
+                        <li><span class="text-primary text-medium">1. </span>Enter your email address below.</li>
+                        <li><span class="text-primary text-medium">2. </span>Our system will send you a temporary link
+                        </li>
+                        <li><span class="text-primary text-medium">3. </span>Use the link to reset your password</li>
+                    </ol>
+
+                </div>
+
+                <form class="card mt-4" id="register-form" action="/forget" role="form" autocomplete="off" class="form"
+                    method="post">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="email-for-pass">Enter your email address</label>
+                            <input class="form-control" type="text" id="email-for-pass" required=""><small
+                                class="form-text text-muted">Enter the email address you used during the registration on
+                                our website. Then we'll email a link to this address.</small>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-success" type="submit">Get New Password</button>
+                        <button class="btn btn-danger" type="submit">Back to Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> --}}
 </body>
+
 </html>

@@ -35,7 +35,7 @@ const registersSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        default:"consumer",
+        required:true,
     },
     tokens:[
         {
