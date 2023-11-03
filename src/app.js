@@ -436,7 +436,7 @@ app.get("/logout", auth, async(req, res)=>{
     try{
 
         res.clearCookie("jwt");
-        req.user.tokens = [];
+        req.user.tokens = [];   
 
         await req.user.save();
         res.redirect("/register");

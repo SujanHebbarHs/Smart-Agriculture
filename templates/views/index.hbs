@@ -52,7 +52,7 @@
     <body style="background-color: #87e390;">
 
 
-        {{>navbar opt1="Login" opt2="Register" }}
+        {{>navbar opt1=opt1 opt2=opt2 opt2=opt3 opt4=opt4 link=link}}
 
         <div class="search-bar d-block d-md-none">
             <div class="container">
@@ -69,18 +69,18 @@
         </div>
 
         <!-- Sidebar -->
+        
 
 
 
-
-        <!--nav-end-->
+        <!--nav-end--------------------->
         <!--==Search-banner=======================================-->
         <section id="search-banner">
 
-            <!--bg-------->
+            <!--bg--------->
 
 
-            <!--text---->
+            <!--text------->
             <div class="search-banner-text">
 
                 <h1>
@@ -109,61 +109,21 @@
 
                 </form>
 
-                
+                <button id="createCardButton" class="btn btn-primary">Create Card</button>
 
 
                 </h3>
 
             </div>
-            <!--search-banner-end--------------->
+
         </section>
 
-        <section id="about-us" class="shadow-lg"
-            style="background-color:#ecf7ee;max-width:1250px;border-radius:30px;margin:10px auto">
-            <div class="container shadow-lg" style="background-color: none; border-radius:30px">
-                <h2 class="pt-5 pb-2">Welcome to Smart Agriculture – Your Source for the Finest Fruits and Vegetables!
-                </h2>
+        <!--search-banner-end--------------->
 
-                <p class="pb-5">At Smart Agriculture , we are committed to providing you with the freshest,
-                    healthiest, and most
-                    delicious fruits and vegetables available in the United States. Our mission is simple: to bring the
-                    farm-fresh goodness directly to your doorstep, making it easier than ever to enjoy a wide variety of
-                    top-quality produce without leaving the comfort of your home.
-
-                    With a dedication to sustainability, taste, and nutrition, we work closely with local and regional
-                    growers to ensure you receive the very best in-season produce. Whether you're a health-conscious
-                    individual, a culinary enthusiast, or a family looking for wholesome options, we've got a wide
-                    selection
-                    of fruits and vegetables to meet your needs.
-
-                    Explore our website, shop with confidence, and experience the convenience of having nature's bounty
-                    delivered right to your door. Smart Agriculture is your one-stop destination for a healthier,
-                    happier
-                    lifestyle. Start savoring the flavors of fresh, organic, and locally sourced produce today!</p>
-                <h1>Why Choose Smart Agriculture?</h1>
-                <ul>
-                    <li><strong>Farm-Fresh Quality:</strong> We partner with trusted farmers who prioritize quality and
-                        sustainability, ensuring you get the best fruits and vegetables available.</li>
-                    <li><strong>Wide Variety:</strong> From crisp apples and juicy berries to leafy greens and vibrant
-                        peppers, we offer a diverse range of produce to suit every taste and recipe.</li>
-                    <li><strong>Convenience Redefined:</strong> Say goodbye to long grocery lines and heavy bags. We
-                        deliver directly to your doorstep, saving you time and effort.</li>
-                    <li><strong>Health at Your Fingertips:</strong> Our fresh produce is not only delicious but also
-                        packed with essential nutrients, promoting your well-being.</li>
-                    <li><strong>Supporting Local Agriculture:</strong> By choosing Fresh Harvest USA, you support local
-                        farmers and contribute to a more sustainable food system.</li>
-                </ul>
-                <p class="pb-3">Join the Smart Agriculture community and savor the difference that fresh, high-quality
-                    fruits and
-                    vegetables can make in your life. Your journey to healthier, tastier living starts right here with
-                    us!</p>
-
-            </div>
-        </section>
 
         <!--==category=========================================-->
 
-        <!--category-end-->
+        <!--category-end----------------------------------->
         <!--==Products====================================-->
         <section id="fruits" style="background-color: ecf7ee;">
             <div class="container">
@@ -177,18 +137,7 @@
                 <!-- Product Containers -->
                 <div class="row  justify-content-center" id="cardContainer">
                     <!-- Product Box -->
-                    <div class=" col-md-4 mt-3">
-                        <div class="product-box">
-                            <img class="card-img-top" src="/images/fruits.jpg" alt="Vegetables">
-                            <strong>Apple</strong>
-                            <span class="card-text">1 Lb</span>
-                            <span class="card-text text-end">$12</span>
-                            <a href="Shopping Cart HTML.html" class="btn btn-success">
-                                <i class="bi bi-cart-fill"></i> Add to Cart
-                            </a>
-                        </div>
-                    </div>
-                    {{!-- <div class="col-md-4 ">
+                    <div class="col-md-4 ">
                         <div class="product-box">
                             <img src="https://i.imgur.com/Zm8Xo2j.png" alt="pack" class="img-fluid">
                             <strong>Big Pack</strong>
@@ -233,13 +182,13 @@
                             </a>
                         </div>
                     </div>
-                </div> --}}
+                </div>
 
 
 
             </div>
         </section>
-        <!--popular-product-end--->
+        <!--popular-product-end--------------------->
         <!--Popular-bundle-pack===================================-->
         <section id="popular-bundle-pack">
             <div class="container">
@@ -253,18 +202,7 @@
                 <!-- Product Containers -->
                 <div class="row">
                     <!-- Product Box -->
-                    <div class=" col-md-4 mt-3">
-                        <div class="product-box">
-                            <img class="card-img-top" src="/images/fruits.jpg" alt="Vegetables">
-                            <strong>Apple</strong>
-                            <span class="card-text">1 Lb</span>
-                            <span class="card-text text-end">$12</span>
-                            <a href="Shopping Cart HTML.html" class="btn btn-success">
-                                <i class="bi bi-cart-fill"></i> Add to Cart
-                            </a>
-                        </div>
-                    </div>
-                    {{!-- <div class="col-md-4">
+                    <div class="col-md-4">
                         <div class="product-box">
                             <img src="https://i.imgur.com/Zm8Xo2j.png" alt="pack" class="img-fluid">
                             <strong>Big Pack</strong>
@@ -313,23 +251,23 @@
                                 <i class="far fa-heart"></i>
                             </a>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!--popular-bundle-pack-end-->
+        <!--popular-bundle-pack-end-------------------------------->
 
 
 
-        <!--logo-section-end--->
+        <!--logo-section-end--------------------->
         <!--==download-app====================================-->
 
-        <!--download-app-section-end--->
+        <!--download-app-section-end------------------------->
         <!--==Footer=============================================-->
         <footer>
             <div class="footer-container" id="contact">
-                <!--logo-container-->
+                <!--logo-container------>
                 <div class="footer-logo">
                     <a href="/Images/Logo.jpg"><span>Smart</span>Agriculture</a>
                     <!--social----->
@@ -357,7 +295,7 @@
                     <ul>
                         <li><a href="#">Phone : +1 NXX NXX-XXXX</a></li>
                         <li><a href="#">Email : xyz@gmail.com</a></li>
-
+                        <li><a href="#">Cities we serve</a>
                         </li>
                     </ul>
                     <br>
