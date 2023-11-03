@@ -8,7 +8,10 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const cookieParser = require("cookie-parser");
+
 const Register = require("./models/registers.js");
+const Product = require("./models/products.js");
+const Order = require("./models/orders.js");
 const auth = require("./middleware/auth.js");
 const resetAuth = require("./middleware/resetAuth.js");
 
@@ -216,6 +219,192 @@ app.post("/reset-password/:token", async(req ,res)=>{
 
 });
 
+app.post("/addProducts", auth, async(req, res)=>{
+
+    try{
+
+        const items = new Product({
+
+            name : req.body.name,
+            owner : req.user._id,
+            price : req.body.price,
+            category : req.body.category,
+            img : req.body.img,
+
+        });
+
+        const resp = await items.save();
+        res.json({msg: "Product addded successfully", state: true,});
+
+    }catch(err){
+
+        console.log(err);
+        res.status(500).json({msg: "Sry we couldnt add your Product. Make sure to fill all the fields and try again.", state: false});
+    };
+
+});
+
+app.get("/listings", auth, async(req, res)=>{
+
+    try{
+
+    const list = await Product.find({},{_id:0, owner:0});
+    console.log(list);
+
+    res.json(list);
+
+    }catch(err){
+
+        console.log(err);
+        res.sendStatus(500);
+    }
+
+});
+
+app.get("/myListings", auth, async(req, res)=>{
+
+    try{
+
+        const myList = await Product.find({owner:req.user._id},{_id:0, owner:0});
+        console.log(myList);
+        res.json(myList);
+
+    }catch(err){
+
+        console.log(err);
+        res.sendStatus(500);
+
+    }
+
+});
+
+app.post("/orders", auth, async(req, res)=>{
+
+    try{
+
+        const productId = req.body.id;
+        const buyer = req.user;
+    
+        const product = await Product.findById({_id: productId});
+        
+
+        const ordersCart = new Order({
+
+            productId,
+            pName: product.name,
+            buyerId: req.user._id,
+            buyerName: req.user.name,
+            ownerId: product.owner,
+            price: product.price,
+            category: product.category,
+            img: product.img,
+
+        });
+
+        const resp = await ordersCart.save();
+        console.log(resp);
+
+    }catch(err){
+        console.log(err);
+        res.status(500).json({msg: "Sorry we couldn't add the requested product to your cart"});
+    }
+
+});
+
+app.get("/orders", auth, async(req, res)=>{
+
+    try{
+
+        const myOrders = await Order.find({ownerId: req.user._id});
+        console.log(myOrders);    
+        res.json(myOrders);
+
+    }catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+
+});
+
+app.get("/approval/:id", auth, async(req, res)=>{
+    try{
+
+        const orderId = req.params.id; 
+        const order = await Order.findById({_id: orderId});
+
+        const pName = order.pName;
+
+        const buyerEmail = await Register.findById({_id: order.buyerId},{email:1, _id:0});
+        console.log(buyerEmail);
+
+        const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            auth: {
+              user: process.env.EMAIL_HOST,
+              pass: process.env.EMAIL_PASS,
+            },
+        });
+
+        const mailOptions = {
+            from: '"Smart Agriculture" <supportcustomer@gmail.com>',
+            to: buyerEmail,
+            subject: "Order Confirmed",
+            text: `Your order for ${pName} has been confirmed. Your order id is ${orderId}. `,
+        }
+
+        const info = await transporter.sendMail(mailOptions);
+        console.log(info);
+
+        await Order.findByIdAndDelete({_id: orderId});
+
+        res.redirect("/");
+
+    }catch(err){
+        console.log(err);
+        res.sendStatus(err);
+    }
+});
+
+app.get("/disapprove/:id", auth, async(req,res)=>{
+    try{
+
+        const orderId = req.params.id;
+        const order = await Order.findById({_id: orderId});
+        const pName = order.pName;
+
+        const buyerEmail = await Register.findById({_id: order.buyerId},{email:1, _id:0});
+        console.log(buyerEmail);
+
+        const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            auth: {
+              user: process.env.EMAIL_HOST,
+              pass: process.env.EMAIL_PASS,
+            },
+        });
+
+        const mailOptions = {
+            from: '"Smart Agriculture" <supportcustomer@gmail.com>',
+            to: buyerEmail,
+            subject: "Order Rejected",
+            text: `Your order for ${pName} has been Rejected. Send mail to ${process.env.EMAIL_HOST} for any querry `,
+        }
+
+        const info = await transporter.sendMail(mailOptions);
+        console.log(info);
+
+        await Order.findByIdAndDelete({_id: orderId});
+
+        res.redirect("/");
+
+    }catch(err){
+        console.log(err);
+        res.sendStatus(err);
+    }
+});
+
 app.get("/logout", auth, async(req, res)=>{
 
     try{
@@ -231,8 +420,14 @@ app.get("/logout", auth, async(req, res)=>{
         res.sendStatus(500);
 
     }
-    
 });
+
+
+
+app.get("*",(req, res)=>{
+    res.render("404");
+});
+
 
 app.listen(PORT, (err)=>{
     if(err) throw err;
