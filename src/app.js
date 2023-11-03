@@ -31,17 +31,34 @@ app.set("view engine", "hbs");
 app.set("views", templates_path);
 hbs.registerPartials(partials_path);
 
-
-app.get("/", (req, res)=>{
-    const data = {
-        opt1: "Login",
-        opt2: "Register",
+app.get("/",(req, res)=>{
+    console.log(req.user);
+    const data={
+        opt1:"bi bi-box-arrow-in-right",
+        opt2:"Login /",
+        opt3:"bi bi-door-open-fill",
+        opt4:"Register",
+        link:"/register",
     };
     res.render("index",data);
 });
 
-app.get("/test", auth, (req, res)=>{
-    res.send("Secret");
+app.get("/home", auth, async(req, res)=>{
+
+    try{
+
+        const data={
+            opt1:"bi bi-box-arrow-in-right",
+            opt2:"Logout",
+            link:"/logout",
+        };
+
+        res.render("index", data);
+
+    }catch(err){
+        res.redirect("/");
+    }
+
 });
 
 app.get("/register", (req, res)=>{
@@ -114,14 +131,19 @@ app.post("/login", async(req, res)=>{
                 httpOnly:true
             });
 
-            res.status(201).render("index");
+            const data={
+                opt1:"bi bi-box-arrow-in-right",
+                opt2:"Logout",
+                link:"/logout",
+            };
+
+            res.render("index", data);
 
         }
         else{
             res.status(400).json({msg:"Email or password is incorrect"});
             return;
         }
-
 
     }catch(err){
 
@@ -362,7 +384,7 @@ app.get("/approval/:id", auth, async(req, res)=>{
 
         await Order.findByIdAndDelete({_id: orderId});
 
-        res.redirect("/");
+        res.json({msg: "Approved"});
 
     }catch(err){
         console.log(err);
@@ -401,7 +423,7 @@ app.get("/disapprove/:id", auth, async(req,res)=>{
 
         await Order.findByIdAndDelete({_id: orderId});
 
-        res.redirect("/");
+        res.json({msg: "Rejected"});
 
     }catch(err){
         console.log(err);
