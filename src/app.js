@@ -43,10 +43,12 @@ app.get("/",(req, res)=>{
     res.render("index",data);
 });
 
+
+// /home page after login
 app.get("/home", auth, async(req, res)=>{
 
     try{
-
+        // data to be sent to the home page after login
         const data={
             opt1:"bi bi-box-arrow-in-right",
             opt2:"Logout",
@@ -60,12 +62,12 @@ app.get("/home", auth, async(req, res)=>{
     }
 
 });
-
+// /register page 
 app.get("/register", (req, res)=>{
 
     res.render("registration");
 });
-
+//registration 
 app.post("/register", async(req, res)=>{
     
     try {
@@ -242,6 +244,12 @@ app.post("/reset-password/:token", async(req ,res)=>{
         console.log(err);
         res.status(500).json({msg: "Server Error"});
     }
+
+});
+
+app.get("/adminDashboard", auth, (req, res)=>{
+
+    res.render("adminDashboard");
 
 });
 

@@ -1,13 +1,10 @@
 let cardCount = 0;  // Keep track of the number of cards
 
-document.getElementById("createCardButton").addEventListener("click", function () {
-    const name = prompt("Enter a name:");
-    const price = prompt("Enter a price:");
-
-    if (name !== null && price !== null) {
-        createCard(name, price);
-    }
-});
+(async () => {
+    // const products = await fetch("/listings");
+    // console.log(products);
+   
+})();
 
 function createCard(name, price) {
     const cardTemplate = `
