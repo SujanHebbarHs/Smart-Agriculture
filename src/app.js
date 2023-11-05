@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const hbs = require("hbs");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
+const multer = require("multer");
 const cookieParser = require("cookie-parser");
 
 const Register = require("./models/registers.js");
@@ -30,6 +31,9 @@ app.use(express.static(static_path));
 app.set("view engine", "hbs");
 app.set("views", templates_path);
 hbs.registerPartials(partials_path);
+
+const storage = require("./components/multer.js");
+const upload = multer({storage});
 
 app.get("/",(req, res)=>{
     console.log(req.user);
@@ -247,13 +251,35 @@ app.post("/reset-password/:token", async(req ,res)=>{
 
 });
 
-app.get("/adminDashboard", auth, (req, res)=>{
+app.get("/dashboard", auth, (req, res)=>{
 
-    res.render("adminDashboard");
+    console.log(req.user.role);
+
+    if(req.user.role == "buyer"){
+
+        res.render("buyerDashboard");
+
+    }
+    else if(req.user.role == "seller"){
+
+        res.render("adminDashboard");
+
+    }
+    else{
+        res.sendStatus(500);
+    }
+
 
 });
 
-app.post("/addProducts", auth, async(req, res)=>{
+app.get("/profile", auth, (req, res)=>{
+
+    const profile = req.user;
+    res.json(profile);
+
+});
+
+app.post("/addProducts", upload.single('image'), auth, async(req, res)=>{
 
     try{
 
@@ -263,12 +289,12 @@ app.post("/addProducts", auth, async(req, res)=>{
             owner : req.user._id,
             price : req.body.price,
             category : req.body.category,
-            img : req.body.img,
+            img : req.file.filename,
 
         });
 
         const resp = await items.save();
-        res.json({msg: "Product addded successfully", state: true,});
+        res.redirect("/dashboard");
 
     }catch(err){
 
@@ -277,6 +303,8 @@ app.post("/addProducts", auth, async(req, res)=>{
     };
 
 });
+
+
 
 app.get("/listings", auth, async(req, res)=>{
 
@@ -292,6 +320,12 @@ app.get("/listings", auth, async(req, res)=>{
         console.log(err);
         res.sendStatus(500);
     }
+
+});
+
+app.get("/myListingsPage", auth, (req, res)=>{
+
+    res.render("listingPage");
 
 });
 
@@ -345,11 +379,15 @@ app.post("/orders", auth, async(req, res)=>{
 
 });
 
+app.get("/cart", auth, (req, res)=>{
+    res.render("cart");
+})
+
 app.get("/orders", auth, async(req, res)=>{
 
     try{
 
-        const myOrders = await Order.find({ownerId: req.user._id});
+        const myOrders = await Order.find({buyerId: req.user._id});
         console.log(myOrders);    
         res.json(myOrders);
 

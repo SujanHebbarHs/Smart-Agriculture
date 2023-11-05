@@ -1,8 +1,19 @@
 let cardCount = 0;  // Keep track of the number of cards
 
 (async () => {
-    // const products = await fetch("/listings");
-    // console.log(products);
+    const products = await fetch("/listings");
+    console.log(products);
+
+    products.forEach(product => {
+        
+        const productName = product.name;
+        const category = product.category;
+        const pricePerLb = product.price;
+        const imgSrc = `/CSS/${product.img}`;
+
+        //Continue code
+
+    });
    
 })();
 

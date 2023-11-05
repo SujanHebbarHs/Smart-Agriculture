@@ -21,7 +21,7 @@
         aria-controls="offcanvasExample">
         <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
       </button>
-      <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="/">Smart Agriculture</a>
+      <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="/home">Smart Agriculture</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar"
         aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,10 +42,10 @@
               <i class="bi bi-person-fill"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="/profile">Profile</a></li>
               
               <li>
-                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
               </li>
             </ul>
           </li>
@@ -91,7 +91,7 @@
             <div class="collapse" id="layouts">
               <ul class="navbar-nav ps-3">
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="/myListingsPage" class="nav-link px-3">
                     <span class="me-2"><i class="bi bi-speedometer2"></i></span>
                     <span style="font-size: 15px;">My Listings</span>
                   </a>
@@ -100,7 +100,7 @@
             </div>
           </li>
           <li>
-            <a href="/HTML/orderRequests.html" class="nav-link px-3">
+            <a href="#" class="nav-link px-3">
               <span class="me-2"><i class="bi bi-book-fill"></i></span>
               <span>Order Requests</span>
             </a>
@@ -135,24 +135,24 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModal"></button>
           </div>
           <div class="modal-body">
-            <form action="" id="productAdd">
+            <form action="/addProducts" method="post" id="productAdd" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-6">
                   <!-- Left column for labels -->
-                  <label for="productName">Product Name</label> <br><br>
+                  <label for="name">Product Name</label> <br><br>
                   <label for="category">Category</label><br><br>
-                  <label for="pricePerLb">Price per Lb</label><br><br>
+                  <label for="price">Price per Lb</label><br><br>
                   <label for="image">Image</label>
                 </div>
                 <div class="col-6">
                   <!-- Right column for input fields -->
-                  <input type="text" name="productName" id="productName" class="form-control mb-2">
+                  <input type="text" name="name" id="productName" class="form-control mb-2">
                   <select name="category" id="category" class="form-select mb-2">
                     <option value="" selected disabled>Select a Category</option>
                     <option value="Fruits">Fruits</option>
                     <option value="Vegetables">Vegetables</option>
                   </select>
-                  <input type="text" name="pricePerLb" id="pricePerLb" class="form-control mb-2">
+                  <input type="text" name="price" id="pricePerLb" class="form-control mb-2">
                   <input type="file" name="image" id="image" class="form-control mb-2">
                   <input type="submit" class="btn btn-success" id="dataSubmit"  ></button>
                 </div>
