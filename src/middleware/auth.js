@@ -14,12 +14,14 @@ const auth = async(req, res, next)=>{
         req.token = token;
         req.user = user;
 
+        res.locals.isLoggedIn = true;
+
         next();
 
     }catch(err){
 
         console.log(err);
-        res.redirect("/");
+        res.redirect("/register");
     }
 
 }

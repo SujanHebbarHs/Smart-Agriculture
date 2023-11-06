@@ -19,6 +19,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#contact"><i class="bi bi-telephone-fill"></i>Contact</a>
                 </li>
+                {{#if isLoggedIn}}
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,12 +28,15 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                        <a class="dropdown-item" href="/cart">My Cart</a>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </li>
             </ul>
-            <a class="btn btn-primary" href="{{link}}"><i class="{{opt1}}"></i> {{opt2}} <i
-                    class="{{opt3}}"></i>{{opt4}}</a>
+            {{else}}
+            <a class="btn btn-primary" href="/register"><i class="bi bi-box-arrow-in-right"></i> Login / <i
+                    class="bi bi-door-open-fill"></i>Register</a>
+            {{/if}}
         </div>
     </div>
     </div>

@@ -33,38 +33,20 @@ app.set("view engine", "hbs");
 app.set("views", templates_path);
 hbs.registerPartials(partials_path);
 
+
 const storage = require("./components/multer.js");
 const upload = multer({storage});
 
 app.get("/",(req, res)=>{
-    console.log(req.user);
-    const data={
-        opt1:"bi bi-box-arrow-in-right",
-        opt2:"Login /",
-        opt3:"bi bi-door-open-fill",
-        opt4:"Register",
-        link:"/register",
-    };
-    res.render("index",data);
+
+    res.render("index");
 });
 
 
 // /home page after login
-app.get("/home", auth, async(req, res)=>{
+app.get("/home", auth, (req, res)=>{
 
-    try{
-        // data to be sent to the home page after login
-        const data={
-            opt1:"bi bi-box-arrow-in-right",
-            opt2:"Logout",
-            link:"/logout",
-        };
-
-        res.render("index", data);
-
-    }catch(err){
-        res.redirect("/");
-    }
+    res.render("index");
 
 });
 // /register page 
@@ -138,13 +120,8 @@ app.post("/login", async(req, res)=>{
                 httpOnly:true
             });
 
-            const data={
-                opt1:"bi bi-box-arrow-in-right",
-                opt2:"Logout",
-                link:"/logout",
-            };
 
-            res.render("index", data);
+            res.redirect("/home");
 
         }
         else{

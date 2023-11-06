@@ -2,7 +2,7 @@ const mongoose  = require("mongoose");
 
 mongoose.connect("mongodb://127.0.0.1:27017/buysell")
 .then(()=>{
-    console.log("Connection to DB successfull.");
+    console.log("Connection to DB successful.");
 })
 .catch((err)=>{
         console.log(err);

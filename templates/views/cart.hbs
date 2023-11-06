@@ -70,17 +70,16 @@
                   <tr>
                     <th scope="row" class="border-0">
                       <div class="p-2">
-                        <img src="https://bootstrapious.com/i/snippets/sn-cart/product-1.jpg" alt="" width="70"
+                        <img src="" alt="" width="70"
                           class="img-fluid rounded shadow-sm">
                         <div class="ml-3 d-inline-block align-middle">
                           <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle" id="productName"
-                              name="productName">Timex Unisex
-                              Originals</a></h5>
-                              <span class="text-muted font-weight-normal font-italic d-block" id="category" name="category">Category: Watches</span>
+                              name="productName">{{productName}}</a></h5>
+                              <span class="text-muted font-weight-normal font-italic d-block" id="category" name="category">{{Category}}: </span>
                         </div>
                       </div>
                     </th>
-                    <td class="border-0 align-middle" id="price" name="price"><strong>$79.00</strong></td>
+                    <td class="border-0 align-middle" id="price" name="price"><strong>{{Price}}</strong></td>
                     <td class="border-0 align-middle">
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -128,7 +127,7 @@
                 <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                   <div class="toast-header">
                     
-                    <strong class="me-auto">Smart Agriculture</strong>
+                    <strong class="me-auto">Smart <span style="color: green;"> Agriculture</span></strong>
                     <small id="dateTime"></small>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                   </div>
