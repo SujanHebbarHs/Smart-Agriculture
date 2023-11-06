@@ -123,7 +123,21 @@
                 <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
                   <h5 class="font-weight-bold" id="totalPrice">$400.00</h5>
                 </li>
-              </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+              </ul><button class="btn btn-dark rounded-pill py-2 btn-block" id="checkout" >Proceed to checkout</button>
+              <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="toast-header">
+                    
+                    <strong class="me-auto">Smart Agriculture</strong>
+                    <small id="dateTime"></small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                  <div class="toast-body">
+                    Request has been sent to the seller!
+                  </div>
+                </div>
+              </div>
+              
             </div>
           </div>
         </div>
@@ -131,7 +145,7 @@
       </div>
     </div>
   </div>
-  <script src="/Javascript/cart.js"></script>
+  <script src="/script/cart.js"></script>
 </body>
 
 </html>

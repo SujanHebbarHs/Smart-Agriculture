@@ -36,12 +36,12 @@ const orderHistorySchema = new mongoose.Schema({
     },
     status:{
         type:String,
-        required,
+        required:true,
     }
 }, {
     timestamps:true
 });
 
-const OrderHistory = new mongoose.model("Order", orderHistorySchema);
+const OrderHistory = new mongoose.model("OrderHistory", orderHistorySchema);
 
 module.exports = OrderHistory;

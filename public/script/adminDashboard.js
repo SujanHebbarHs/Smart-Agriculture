@@ -50,7 +50,8 @@
       const myProductsData = await response.json(); // Parse the response as JSON
 
       myProductsData.forEach(product => {
-        const productName = product.name;
+        const productN = product.name;
+        const productName = productN.charAt(0).toUpperCase() + productN.slice(1);
         const category = product.category;
         const pricePerLb = product.price;
         const imgSrc = `/CSS/${product.img}`;
@@ -68,7 +69,7 @@
         cell1.innerHTML = productName;
         cell2.innerHTML = category;
         cell3.innerHTML = pricePerLb;
-
+        row.setAttribute("data-key", product._id)
         // Delete button functionality
         const deleteButton = document.createElement("button");
         deleteButton.innerHTML = "Delete";
