@@ -1,8 +1,12 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light sub-menu">
-    <div class="container">
-        <a href="/home"><img src="/Images/Logo.jpg" class="m-0 p-0 ml-0" alt=""
-                style="width: 250px; height: 150px;"></a>
+<nav class="navbar navbar-expand-md navbar-light bg-light sub-menu" style="align-items: flex-start;">
+   <div class="container">
+    <div class="d-flex">
+        <a href="/home"><img src="/Images/Logo.jpg" class="m-0 p-0 ml-0" alt="Smart Agriculture Logo" style="width: 250px; height: 150px;"></a>
+        <h1 class="mt-5">Smart <span style="color:green"> Agriculture </span></h1>
+    </div>
+</div>
 
+    <div class="container " class="mb-0 pb-0" style="margin-top: 50px;margin-right: 150px">
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item active">
@@ -16,17 +20,19 @@
                     <a class="nav-link" href="#contact"><i class="bi bi-telephone-fill"></i>Contact</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="bi bi-person"></i> Profile
                     </a>
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                        <a class="dropdown-item" href="/cart">Checkout</a>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </li>
             </ul>
-            <a class="btn btn-primary" href="{{link}}"><i class="{{opt1}}"></i> {{opt2}} <i class="{{opt3}}"></i>{{opt4}}</a>
+            <a class="btn btn-primary" href="{{link}}"><i class="{{opt1}}"></i> {{opt2}} <i
+                    class="{{opt3}}"></i>{{opt4}}</a>
         </div>
+    </div>
     </div>
 </nav>
