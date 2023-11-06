@@ -1,30 +1,36 @@
-let cardCount = 0;  // Keep track of the number of cards
-
 (async () => {
-    const products = await fetch("/listings");
-    console.log(products);
+    try {
+        const response = await fetch("/listings");
+        if (response.ok) {
+            const products = await response.json(); // Parse the response as JSON
 
-    products.forEach(product => {
-        
-        const productName = product.name;
-        const category = product.category;
-        const pricePerLb = product.price;
-        const imgSrc = `/CSS/${product.img}`;
+            products.forEach(product => {
+                const productName = product.name;
+                const category = product.category;
+                const pricePerLb = product.price;
+                const imgSrc = `/Images/${product.img}`;
 
-        //Continue code
-
-    });
-   
+                // Continue with your code here
+                createCard(productName, pricePerLb, imgSrc, category);
+                console.log("Product Name:", productName);
+            });
+        } else {
+            console.error("Failed to fetch data from the server");
+        }
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
 })();
 
-function createCard(name, price) {
+function createCard(name, price, imgSrc, category) {
     const cardTemplate = `
-        <div class=" col-md-4 mt-3">
+        <div class="col-md-4 mt-3">
             <div class="product-box">
-                <img class="card-img-top" src="/images/fruits.jpg" alt="Fruits">
+                <img class="card-img-top" src="${imgSrc}" alt="${name}">
                 <strong>${name}</strong>
                 <span class="card-text">1lb</span>
-                <span class="card-text text-end">$${price}</span>
+                <span class="card-text ">${category}</span>
+                <span class="card-text text-end text">$${price}</span>
                 <a href="Shopping Cart HTML.html" class="btn btn-success">
                     <i class="bi bi-cart-fill"></i> Add to Cart
                 </a>
@@ -32,19 +38,9 @@ function createCard(name, price) {
         </div>
     `;
 
-    const cardContainer = document.getElementById("cardContainer");
+    const cardContainerId = category === "Fruits" ? "fruitsCardContainer" : "vegetablesCardContainer";
+    const cardContainer = document.getElementById(cardContainerId);
 
-    // Check if we need to start a new row
-    if (cardCount % 3 === 0) {
-        // Create a new row container
-        const newRow = document.createElement("div");
-        newRow.className = "row justify-content-center";
-        cardContainer.appendChild(newRow);
-    }
-
-    // Append the card to the last row in the container
-    const lastRow = cardContainer.lastChild;
-    lastRow.innerHTML += cardTemplate;
-
-    cardCount++;  // Increment the card count
+    // Append the card to the appropriate section
+    cardContainer.innerHTML += cardTemplate;
 }

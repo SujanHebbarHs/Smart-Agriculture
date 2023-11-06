@@ -276,9 +276,26 @@ app.get("/dashboard", auth, (req, res)=>{
 app.get("/profile", auth, (req, res)=>{
 
     const profile = req.user;
-    res.json(profile);
 
+    const name = profile.name;
+    const email = profile.email;
+    const state = profile.state;
+    const address = profile.address;
+    const bankAcc = profile.bankAcc;
+    const role = profile.role;
+
+    res.render("profile",{
+        name,
+        email,
+        state,
+        address,
+        bankAcc,
+        role,
+    });
+    
 });
+
+
 
 app.post("/addProducts", upload.single('image'), auth, async(req, res)=>{
 
@@ -294,13 +311,14 @@ app.post("/addProducts", upload.single('image'), auth, async(req, res)=>{
 
         });
         
+        
         const resp = await items.save();
         res.redirect("/dashboard");
 
     }catch(err){
 
         console.log(err);
-        res.status(500).json({msg: "Sry we couldnt add your Product. Make sure to fill all the fields and try again.", state: false});
+        res.status(500).json({msg: "Sorry we couldn't add your Product. Make sure to fill all the fields and try again.", state: false});
     };
 
 });
@@ -315,7 +333,6 @@ app.get("/search/:word", async(req, res)=>{
     res.json(products);
 
 });
-
 
 
 app.get("/listings", async(req, res)=>{
@@ -348,6 +365,7 @@ app.get("/myListings", auth, async(req, res)=>{
         const myList = await Product.find({owner:req.user._id},{_id:0, owner:0});
         console.log(myList);
         res.json(myList);
+       
 
     }catch(err){
 
