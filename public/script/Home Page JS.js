@@ -5,7 +5,8 @@
             const products = await response.json(); // Parse the response as JSON
 
             products.forEach(product => {
-                const productName = product.name;
+                const productN = product.name;
+                const productName = productN.charAt(0).toUpperCase() + productN.slice(1);
                 const category = product.category;
                 const pricePerLb = product.price;
                 const imgSrc = `/Images/${product.img}`;
@@ -48,14 +49,52 @@ function createCard(name, price, imgSrc, category, productId) {
     const addButtons = cardContainer.querySelectorAll('.add-to-cart');
 
     addButtons.forEach((button) => {
-        button.addEventListener('click', function(event) {
+        button.addEventListener('click', async function (event) {
             event.preventDefault();
-            
+
             console.log('add button clicked');
-            button.classList.remove('btn-success'); // Remove the success class
-            button.classList.add('btn-white-background'); // Add a custom class for white background
-            button.innerHTML = "Added to Cart";
-            button.setAttribute("disabled", "disabled");
+            const toggle = button.innerText.trim();
+
+            if (toggle == "Add to Cart") {
+
+                console.log('inside add button')
+                button.classList.remove('btn-success'); // Remove the success class
+                button.classList.add('btn-white-background'); // Add a custom class for white background
+                button.innerHTML = "Added to Cart";
+               
+                const productElement = document.querySelector('.product-box');
+
+                const productId = productElement.getAttribute('data-key');
+
+
+                const resp = await fetch('/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: productId,
+
+                    })
+                });
+            }
+
+            else if (button.innerHTML === "Added to Cart") {
+                button.classList.remove('btn-white-background'); // Remove the success class
+                button.classList.add('btn-success'); // Add a custom class for white background
+                button.innerHTML = "Add to Cart";
+                
+                const productElement = document.querySelector('.product-box');
+
+                const productId = productElement.getAttribute('data-key');
+
+                const respone = await fetch(`/orders/${productId}`, {
+                    method: "DELETE",
+                });
+            }
+
+
+
         });
     });
 }
@@ -65,17 +104,17 @@ searchBar.addEventListener('submit', async (e) => {
     e.preventDefault();
     console.log("innnside");
     const searchValue = searchBar.querySelector('.search-input').value;
-    console.log("The word is: "+searchValue);
-    const searchWord =searchValue.trim().toLowerCase();
+    console.log("The word is: " + searchValue);
+    const searchWord = searchValue.trim().toLowerCase();
     const response = await fetch(`/search/${searchWord}`);
     // console.log(response);
-    
+
     if (response.ok) {
-        const products = await response.json(); 
+        const products = await response.json();
         console.log(products);
 
-    document.getElementById("fruitsCardContainer").innerHTML = '';
-    document.getElementById("vegetablesCardContainer").innerHTML = '';
+        document.getElementById("fruitsCardContainer").innerHTML = '';
+        document.getElementById("vegetablesCardContainer").innerHTML = '';
 
 
         products.forEach(product => {

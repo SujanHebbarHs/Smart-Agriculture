@@ -45,7 +45,7 @@
 
 (async () => {
   try {
-    const response = await fetch("/mylistings");
+    const response = await fetch("/myListings");
     if (response.ok) {
       const myProductsData = await response.json(); // Parse the response as JSON
 
@@ -75,8 +75,20 @@
         deleteButton.innerHTML = "Delete";
         deleteButton.className = "btn btn-danger";
         deleteButton.id = "deleteButton";
-        deleteButton.addEventListener("click", function () {
+        deleteButton.addEventListener("click",async function () {
+          
+          const respone = await fetch(`/myListings/${product._id}`, {
+            method: "DELETE",
+          });
+          if (respone.ok) {
+            console.log("Deleted");
+          } else {
+            console.error("Failed to delete");
+          }
+
           row.remove();
+
+
         });
 
         //Appending Cell 4 to the table(delete button)
