@@ -9,9 +9,10 @@
                 const category = product.category;
                 const pricePerLb = product.price;
                 const imgSrc = `/Images/${product.img}`;
+                const productId = product._id;
 
                 // Continue with your code here
-                createCard(productName, pricePerLb, imgSrc, category);
+                createCard(productName, pricePerLb, imgSrc, category, productId);
                 console.log("Product Name:", productName);
             });
         } else {
@@ -22,10 +23,10 @@
     }
 })();
 
-function createCard(name, price, imgSrc, category) {
+function createCard(name, price, imgSrc, category, productId) {
     const cardTemplate = `
         <div class="col-md-4 mt-3">
-            <div class="product-box">
+            <div class="product-box" data-key="${productId}">
                 <img class="card-img-top" src="${imgSrc}" alt="${name}">
                 <strong>${name}</strong>
                 <span class="card-text">1lb</span>

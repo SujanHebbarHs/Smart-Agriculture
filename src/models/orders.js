@@ -34,6 +34,20 @@ const orderSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    quantity:{
+        type:Number,
+        default:1
+    },
+    status:{
+        type:String,
+        default:"P"
+    },
+    totalPrice: {
+        type: Number,
+        default: function () {
+            return this.price;
+        },
+    },
 
 });
 

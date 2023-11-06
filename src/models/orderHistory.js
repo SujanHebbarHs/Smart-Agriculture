@@ -36,12 +36,22 @@ const orderHistorySchema = new mongoose.Schema({
     },
     status:{
         type:String,
-        required,
+        default:"processing",
+    },
+    quantity:{
+        type:Number,
+        default:1,
+    },
+    totalPrice: {
+        type: Number,
+        default: function () {
+            return this.price;
+        },
     }
 }, {
     timestamps:true
 });
 
-const OrderHistory = new mongoose.model("Order", orderHistorySchema);
+const OrderHistory = new mongoose.model("OrderHistory", orderHistorySchema);
 
 module.exports = OrderHistory;

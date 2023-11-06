@@ -292,7 +292,7 @@ app.get("/profile", auth, (req, res)=>{
         bankAcc,
         role,
     });
-    
+
 });
 
 
@@ -300,10 +300,12 @@ app.get("/profile", auth, (req, res)=>{
 app.post("/addProducts", upload.single('image'), auth, async(req, res)=>{
 
     try{
+        const Name = req.body.name;
+        const name = Name.toLowerCase();
 
         const items = new Product({
 
-            name : req.body.name,
+            name,
             owner : req.user._id,
             price : req.body.price,
             category : req.body.category,
@@ -358,11 +360,28 @@ app.get("/myListingsPage", auth, (req, res)=>{
 
 });
 
+app.delete("/myListings/:id", auth, async(req, res)=>{
+
+    try{
+
+        const _id = req.params.id;
+        const resp = await Product.findByIdAndDelete({_id});
+        res.json({msg:"Deleted successfully"});
+
+    }catch(err){
+
+        console.log(err);
+        res.sendStatus(500);
+
+    }
+
+});
+
 app.get("/myListings", auth, async(req, res)=>{
 
     try{
 
-        const myList = await Product.find({owner:req.user._id},{_id:0, owner:0});
+        const myList = await Product.find({owner:req.user._id},{owner:0});
         console.log(myList);
         res.json(myList);
        
@@ -390,8 +409,8 @@ app.post("/orders", auth, async(req, res)=>{
 
             productId,
             pName: product.name,
-            buyerId: req.user._id,
-            buyerName: req.user.name,
+            buyerId: buyer._id,
+            buyerName: buyer.name,
             ownerId: product.owner,
             price: product.price,
             category: product.category,
@@ -399,8 +418,26 @@ app.post("/orders", auth, async(req, res)=>{
 
         });
 
-        const resp = await ordersCart.save();
-        console.log(resp);
+        const orderResp = await ordersCart.save();
+        console.log(orderResp);
+
+        const orderHistoryCart = new OrderHsitory({
+
+            productId,
+            pName: product.name,
+            buyerId: req.user._id,
+            buyerName: req.user.name,
+            ownerId: product.owner,
+            price: product.price,
+            category: product.category,
+            img: product.img,
+
+        })
+
+        const orderHistoryResp = await orderHistoryCart.save();
+        console.log(orderHistoryResp);
+
+        res.json({msg: "Added successfully", state:true});
 
     }catch(err){
         console.log(err);
@@ -409,15 +446,12 @@ app.post("/orders", auth, async(req, res)=>{
 
 });
 
-app.get("/cart", auth, (req, res)=>{
-    res.render("cart");
-})
-
+//To unordered in cart
 app.get("/orders", auth, async(req, res)=>{
 
     try{
 
-        const myOrders = await Order.find({buyerId: req.user._id});
+        const myOrders = await Order.find({buyerId: req.user._id, status:"P"});
         console.log(myOrders);    
         res.json(myOrders);
 
@@ -427,6 +461,36 @@ app.get("/orders", auth, async(req, res)=>{
     }
 
 });
+
+app.delete("/orders/:id", auth, async(req, res)=>{
+
+    try{
+
+        const id = req.params.id;
+
+        const resp = await Order.deleteOne({productId: id});
+        const resp2 = await OrderHsitory.deleteOne({productId: id});
+
+        res.json({msg: "Deleted", state: true});
+
+    }catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+
+});
+
+
+app.get("/cart", auth, (req, res)=>{
+    res.render("cart");
+});
+
+app.post("/cart", auth, async(req, res)=>{
+
+    
+
+});
+
 
 app.get("/approval/:id", auth, async(req, res)=>{
     try{
