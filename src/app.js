@@ -13,6 +13,7 @@ const cookieParser = require("cookie-parser");
 const Register = require("./models/registers.js");
 const Product = require("./models/products.js");
 const Order = require("./models/orders.js");
+const OrderHsitory = require("./models/orderHistory.js");
 const auth = require("./middleware/auth.js");
 const resetAuth = require("./middleware/resetAuth.js");
 
@@ -292,7 +293,7 @@ app.post("/addProducts", upload.single('image'), auth, async(req, res)=>{
             img : req.file.filename,
 
         });
-
+        
         const resp = await items.save();
         res.redirect("/dashboard");
 
@@ -304,13 +305,24 @@ app.post("/addProducts", upload.single('image'), auth, async(req, res)=>{
 
 });
 
+app.get("/search/:word", async(req, res)=>{
+
+    const search_name = req.params.word;
+
+    const products = await Product.find({ name: { $regex: search_name } })
+    ;
+    console.log(products);
+    res.json(products);
+
+});
 
 
-app.get("/listings", auth, async(req, res)=>{
+
+app.get("/listings", async(req, res)=>{
 
     try{
 
-    const list = await Product.find({},{_id:0, owner:0});
+    const list = await Product.find({});
     console.log(list);
 
     res.json(list);
