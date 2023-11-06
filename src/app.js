@@ -328,10 +328,10 @@ app.post("/addProducts", upload.single('image'), auth, async(req, res)=>{
 app.get("/search/:word", async(req, res)=>{
 
     const search_name = req.params.word;
+    console.log("Name is: "+search_name);
 
-    const products = await Product.find({ name: { $regex: search_name } })
-    ;
-    console.log(products);
+    const products = await Product.find({ name: { $regex: search_name } });
+    // console.log(products);
     res.json(products);
 
 });
@@ -362,7 +362,7 @@ app.get("/listings", async(req, res)=>{
     try{
 
     const list = await Product.find({});
-    console.log(list);
+    // console.log(list);
 
     res.json(list);
 

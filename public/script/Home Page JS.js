@@ -63,13 +63,20 @@ function createCard(name, price, imgSrc, category, productId) {
 const searchBar = document.getElementById('search');
 searchBar.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const searchValue = searchBar.querySelector('input').value;
+    console.log("innnside");
+    const searchValue = searchBar.querySelector('.search-input').value;
+    console.log("The word is: "+searchValue);
     const searchWord =searchValue.trim().toLowerCase();
-    console.log(searchValue);
     const response = await fetch(`/search/${searchWord}`);
+    // console.log(response);
     
     if (response.ok) {
-        const products = await response.json(); // Parse the response as JSON
+        const products = await response.json(); 
+        console.log(products);
+
+    document.getElementById("fruitsCardContainer").innerHTML = '';
+    document.getElementById("vegetablesCardContainer").innerHTML = '';
+
 
         products.forEach(product => {
             const productName = product.name;
@@ -84,4 +91,5 @@ searchBar.addEventListener('submit', async (e) => {
         });
     } else {
         console.error("Failed to fetch data from the server");
-    }});
+    }
+});
