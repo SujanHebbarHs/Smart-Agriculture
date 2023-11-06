@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <style>
+    body {
+      background: #eecda3;
+      background: -webkit-linear-gradient(to right, rgb(195, 238, 163), rgb(10, 129, 57));
+      background: linear-gradient(to right, rgb(195, 238, 163), #5aa777);
+      min-height: 100vh;
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/CSS/bootstrap.min.css">
+  <link rel="stylesheet" href="/CSS/">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+</head>
+
+<body>
+  <div class="px-4 px-lg-0">
+    <!-- For demo purpose -->
+    <div class="container text-white py-5 text-center">
+      <h1 class="display-4 ">Smart Agriculture</h1>
+      <p class="lead mb-0">Order Your Fruits and Vegetables Fresh and Online! </p>
+
+    </div>
+    <!-- End -->
+
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-5 bg-white shadow-sm mb-5" style="border-radius: 13px;">
+
+            <!-- Shopping cart table -->
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="p-2 px-3 text-uppercase">Product</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2 text-uppercase">Price</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2 text-uppercase">Quantity</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2 text-uppercase">Remove</div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="border-0">
+                      <div class="p-2">
+                        <img src="https://bootstrapious.com/i/snippets/sn-cart/product-1.jpg" alt="" width="70"
+                          class="img-fluid rounded shadow-sm">
+                        <div class="ml-3 d-inline-block align-middle">
+                          <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle" id="productName"
+                              name="productName">Timex Unisex
+                              Originals</a></h5>
+                              <span class="text-muted font-weight-normal font-italic d-block" id="category" name="category">Category: Watches</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="border-0 align-middle" id="price" name="price"><strong>$79.00</strong></td>
+                    <td class="border-0 align-middle">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          
+                           <button class="btn btn-light" id="minusButton"><i class="bi bi-dash"></i></button>
+                          
+                        </div>
+                        <input type="text" class="numeric-input px-2" id="quantity" value="0" placeholder="0" pattern="[0-9]*"
+                          style="width: 50px; border: 1px solid black; border-radius: 4px;">
+                        <div class="input-group-append">
+                          
+                            <button class="btn btn-light" id="plusButton"><i class="bi bi-plus"></i></button>
+                    </td>
+                    <td class="border-0 align-middle"><button href="#" class="btn btn-danger"><i
+                          class="bi bi-trash "></i></button></td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+            <!-- End -->
+          </div>
+        </div>
+
+        <div class="row py-5 justify-content-center bg-white  shadow-lg" style="border-radius: 13px;">
+
+          <div class="col-lg-6">
+            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
+            <div class="p-4">
+              <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal
+                  </strong><strong>$390.00</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and
+                    handling</strong><strong>$10.00</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong
+                    class="text-muted">Tax</strong><strong>$0.00</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                  <h5 class="font-weight-bold" id="totalPrice">$400.00</h5>
+                </li>
+              </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="/Javascript/cart.js"></script>
+</body>
+
+</html>
