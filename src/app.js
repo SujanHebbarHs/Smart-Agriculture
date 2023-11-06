@@ -334,6 +334,26 @@ app.get("/search/:word", async(req, res)=>{
 
 });
 
+app.get("/requests", auth, (req, res)=>{
+
+    res.render("requests");
+
+});
+
+app.get("/orderRequests", auth, async(req, res)=>{
+
+    try{
+
+        const requests = await Order.find({ownerId: req.user._id});
+        console.log(requests);
+        res.json(requests);
+
+    }catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
 
 app.get("/listings", async(req, res)=>{
 
@@ -381,8 +401,10 @@ app.post("/orders", auth, async(req, res)=>{
     try{
 
         const productId = req.body.id;
+        const quantity = req.body.quantity;
+
         const buyer = req.user;
-    
+        
         const product = await Product.findById({_id: productId});
         
 
@@ -396,6 +418,7 @@ app.post("/orders", auth, async(req, res)=>{
             price: product.price,
             category: product.category,
             img: product.img,
+            quantity,
 
         });
 

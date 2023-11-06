@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/CSS/dataTables.bootstrap5.min.css" />
   <link rel="stylesheet" href="/CSS/adminDashboard.css.css" />
-  <title>Dashboard</title>
+  <title>Order Requests</title>
   
 </head>
 
@@ -21,7 +21,7 @@
         aria-controls="offcanvasExample">
         <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
       </button>
-      <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="/home">Smart <span style="color: green;"> Agriculture</span></a>
+      <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="/home">Smart Agriculture</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar"
         aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,7 +63,7 @@
             </div>
           </li>
           <li>
-            <a href="#" class="nav-link px-3 active">
+            <a href="/dashboard" class="nav-link px-3 ">
               <span class="me-2"><i class="bi bi-speedometer2"></i></span>
               <span>My Listings</span>
             </a>
@@ -90,7 +90,7 @@
               <ul class="navbar-nav ps-3">
                 <li>
                   <a href="/requests" class="nav-link px-3">
-                    <span class="me-2"><i class="bi bi-book-fill"></i></span>
+                    <span class="me-2"><i class="bi bi-book-fill active"></i></span>
                     <span style="font-size: 15px;">Order Requests</span>
                   </a>
                 </li>
@@ -99,7 +99,7 @@
           </li>
           
           <li class="my-4">
-            <hr class="dropdown-divider bg-light" />
+            <hr class="dropdown-divider bg-light" >
           </li>
           
           
@@ -113,52 +113,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <h4>Listed Products</h4>
-          <button class="btn btn-primary m-2" id="insertTableData">Add a Product</button>
+          <h4>Order Requests</h4>
+          
         </div>
       </div>
     </div>
-    
-    <!-- Your Bootstrap modal -->
-    <div class="modal fade lg-6" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="productModalLabel">Add a Product</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModal"></button>
-          </div>
-          <div class="modal-body">
-            <form action="/addProducts" method="post" id="productAdd" enctype="multipart/form-data">
-              <div class="row">
-                <div class="col-6">
-                  <!-- Left column for labels -->
-                  <label for="name">Product Name</label> <br><br>
-                  <label for="category">Category</label><br><br>
-                  <label for="price">Price per Lb  </label><br><br>
-                  <label for="image">Image</label>
-                </div>
-                <div class="col-6">
-                  <!-- Right column for input fields -->
-                  <input type="text" name="name" id="productName" class="form-control mb-2">
-                  <select name="category" id="category" class="form-select mb-2">
-                    <option value="" selected disabled>Select a Category</option>
-                    <option value="Fruits">Fruit</option>
-                    <option value="Vegetables">Vegetable</option>
-                  </select>
-                  <input type="text" name="price" id="pricePerLb" class="form-control mb-2">
-                  <input type="file" name="image" id="image" class="form-control mb-2">
-                  <input type="submit" class="btn btn-success" id="dataSubmit"  ></button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    
-    
-
 
       <div class="row">
         <div class="col-md-12 mb-3">
@@ -171,9 +130,13 @@
                 <table id="example" class="table table-striped data-table" style="width: 100%">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Type</th>
+                      <th>Buyer Name</th>
+                      <th>Product Name</th>
+                      <th>Category</th>
                       <th>Price/lb ($)</th>
+                      <th>Quantity</th>
+                      <th>Total Order Price ($)</th>
+                      <th>Address</th>
                       <th>Action</th>
                       
                     </tr>
@@ -200,7 +163,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
-<script src="/script/adminDashboard.js"></script>
+
 
 </body>
 
