@@ -92,7 +92,7 @@
 function createCard(name, price, imgSrc, category, productId) {
 
   const cardTemplate = `
-                  <tr data-product-id="${productId}">
+                  <tr class="key" data-product-id="${productId}">
                       <th scope="row" class="border-0">
                         <div class="p-2">
                           <img src="${imgSrc}" alt="" width="70"
@@ -114,7 +114,7 @@ function createCard(name, price, imgSrc, category, productId) {
                             
                               
                       </td>
-                      <td class="border-0 align-middle"><button href="#" class="btn btn-danger" id="delete"><i
+                      <td class="border-0 align-middle"><button href="#" class="btn btn-danger delete" id="delete"><i
                             class="bi bi-trash "></i></button></td>
                     </tr>
   `;
@@ -122,22 +122,30 @@ function createCard(name, price, imgSrc, category, productId) {
   console.log("Now again");
   cartTable.innerHTML += cardTemplate;
 
-  const deleteButton = document.getElementById("delete");
+  const deleteButtons = document.querySelectorAll(".delete");
 
-  deleteButton.addEventListener("click",async function () {
+  deleteButtons.forEach(async(deleteButton)=>{
+
+    deleteButton.addEventListener("click",async function () {
+
+      const productKey = this.closest(".key");
+      const productId = productKey.getAttribute("data-product-id");
           
-    const response = await fetch(`/orders/${productId}`, {
-      method: "DELETE",
+      const response = await fetch(`/orders/${productId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        const rowToRemove = document.querySelector(`tr[data-product-id="${productId}"]`)
+        rowToRemove.remove();
+        console.log("Deleted");
+      } else {
+        console.error("Failed to delete");
+      }
+  
     });
-    if (response.ok) {
-      const rowToRemove = document.querySelector(`tr[data-product-id="${productId}"]`)
-      rowToRemove.remove();
-      console.log("Deleted");
-    } else {
-      console.error("Failed to delete");
-    }
 
-  });
+  })
+  
 
 const quantitySelected = document.getElementById("quantity");
 
