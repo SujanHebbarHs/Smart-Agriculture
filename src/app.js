@@ -479,12 +479,14 @@ app.post("/cart", auth, async(req, res)=>{
 
         const productId = req.body.productId;
         const orderId = req.body.orderId;
+        const quantity = req.body.quantity;
+        const totalPrice = req.body.totalPrice;
 
-        const resp = await Order.findByIdAndUpdate({_id:orderId},{$set:{status:"Waiting"}});
+        const resp = await Order.findByIdAndUpdate({_id:orderId},{$set:{status:"Waiting", quantity, totalPrice}});
         console.log(resp);
         const orderH = await OrderHsitory.findOne({productId, buyerId:req.user._id, status:"Pending"});
         console.log("Is this null"+orderH);
-        const resp2 = await OrderHsitory.findByIdAndUpdate({_id:orderH._id}, {$set:{status:"Waiting"}});
+        const resp2 = await OrderHsitory.findByIdAndUpdate({_id:orderH._id}, {$set:{status:"Waiting", quantity, totalPrice}});
         console.log(resp2);
 
     res.json({msg:"Sent requested to seller", state:true});
