@@ -62,11 +62,13 @@ function createCard(name, price, imgSrc, category, productId) {
 
             if (toggle == "Add to Cart") {
 
-                console.log('inside add button')
+                console.log('inside add button');
                 button.classList.remove('btn-success'); // Remove the success class
                 button.classList.add('btn-white-background'); // Add a custom class for white background
                 button.innerHTML = "Added to Cart";
-                console.log("The id is now: "+productId);
+                let productBox = this.closest(".product-box");
+                let productID = productBox.getAttribute("data-key");
+                console.log("The id is now: "+productID);
 
                 const resp = await fetch('/orders', {
                     method: 'POST',
@@ -74,7 +76,7 @@ function createCard(name, price, imgSrc, category, productId) {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        id: productId,
+                        id: productID,
 
                     })
                 });
@@ -84,8 +86,10 @@ function createCard(name, price, imgSrc, category, productId) {
                 button.classList.remove('btn-white-background'); // Remove the success class
                 button.classList.add('btn-success'); // Add a custom class for white background
                 button.innerHTML = "Add to Cart";
+                let productBox = this.closest(".product-box");
+                let productID = productBox.getAttribute("data-key");
 
-                const respone = await fetch(`/orders/${productId}`, {
+                const respone = await fetch(`/orders/${productID}`, {
                     method: "DELETE",
                 });
             }

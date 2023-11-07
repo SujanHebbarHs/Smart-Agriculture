@@ -48,27 +48,28 @@
                   console.log('checkout button clicked');
 
                   const response = await fetch("/orders");
+
                   if (response.ok && response != null) {
 
-                    const orders = await response.json(); // Parse the response as JSON
+                      const orders = await response.json(); // Parse the response as JSON
 
-                    orders.forEach(async(order) => {
+                      orders.forEach(async(order) => {
 
-                      if(order.status === "Pending"){
-                          
-                        const resp = await fetch('/cart', {
-                          method: 'POST',
-                          headers: {
-                              'Content-Type': 'application/json'
-                          },
-                          body: JSON.stringify({
-                              productId: order.productId,
-                              orderId: order._id,
-      
-                          })
-                      }); 
+                          if(order.status === "Pending"){
+                              
+                                const resp = await fetch('/cart', {
+                                  method: 'POST',
+                                  headers: {
+                                      'Content-Type': 'application/json'
+                                  },
+                                  body: JSON.stringify({
+                                      productId: order.productId,
+                                      orderId: order._id,
+              
+                                  })
+                                }); 
 
-                      }
+                          }
       
                   });
 
@@ -77,7 +78,7 @@
 
                   }
 
-                  window.location.href = "/";
+                  window.location.href = "/home";
                 });
 
         } else {
