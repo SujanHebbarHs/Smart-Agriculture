@@ -1,11 +1,9 @@
 (async () => {
     try {
         const response = await fetch("/orders");
-        console.log(response);
+
         if (response.ok && response != null) {
           const orders = await response.json(); // Parse the response as JSON
-          
-          // console.log(orders)
             orders.forEach(order => {
                 if(order.status === "Pending"){
                     const productId = order.productId;
