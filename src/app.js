@@ -596,6 +596,25 @@ app.get("/disapprove/:id", auth, async(req,res)=>{
     }
 });
 
+app.get("/orderHistoryList", auth, (req, res)=>{
+
+    res.render("orderhistory");
+
+});
+
+app.get("/orderHistory", auth, async(req, res)=>{
+    try{
+
+        const orderHistory = await OrderHsitory.find({buyerId:req.user._id});
+        console.log(orderHistory);
+        res.json(orderHistory);
+
+    }catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
 app.get("/logout", auth, async(req, res)=>{
 
     try{

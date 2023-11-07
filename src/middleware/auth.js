@@ -15,6 +15,7 @@ const auth = async(req, res, next)=>{
         req.user = user;
 
         res.locals.isLoggedIn = true;
+        res.locals.isBuyer = user.role=="buyer"?true:false;
 
         next();
 
