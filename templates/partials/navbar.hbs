@@ -28,13 +28,15 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                        {{#if isBuyer}}
                         <a class="dropdown-item" href="/cart">My Cart</a>
+                        {{/if}}
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </li>
             </ul>
             {{else}}
-            <a class="btn btn-primary" href="/register"><i class="bi bi-box-arrow-in-right"></i> Login / <i
+            <a class="btn btn-primary mt-2 pb-0 ms-5" href="/register"><i class="bi bi-box-arrow-in-right"></i> Login / <i
                     class="bi bi-door-open-fill"></i>Register</a>
             {{/if}}
         </div>
