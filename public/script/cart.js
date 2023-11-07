@@ -1,11 +1,9 @@
 (async () => {
   try {
     const response = await fetch("/orders");
-    console.log(response);
+    
     if (response.ok && response != null) {
       const orders = await response.json(); // Parse the response as JSON
-
-      // console.log(orders)
       orders.forEach(order => {
         if (order.status === "Pending") {
           const productId = order.productId;
@@ -14,13 +12,16 @@
           const pricePerLb = order.price;
           const imgSrc = `/Images/${order.img}`;
 
+
           // Continue with your code here
           createCard(productName, pricePerLb, imgSrc, category, productId);
           console.log("Product Name:", productName);
         }
+
       });
 
       const timeNow = document.getElementById('dateTime');
+
 
       const dateTime = () => {
         // Create a new Date object representing the current date and time
@@ -30,11 +31,13 @@
         const hr = currentDate.getHours(); // Get the current hour (0 to 23)
         const min = currentDate.getMinutes(); // Get the current minutes (0 to 59)
 
+
         // Create a formatted time string
         const currentTime = `${hr}:${min}`;
         timeNow.innerHTML = currentTime;
         console.log(currentTime); // Output the current time in HH:MM:SS format
       }
+
 
       const checkout = document.getElementById('checkout');
       const liveToast = new bootstrap.Toast(document.getElementById('liveToast'));
@@ -45,10 +48,18 @@
         const response = await fetch("/orders");
 
         if (response.ok && response != null) {
+
           const orders = await response.json(); // Parse the response as JSON
 
           orders.forEach(async (order) => {
+
             if (order.status === "Pending") {
+
+              const quantityInput = document.getElementById(`quantity-${order.productId}`);
+              let totalPrice = quantityInput.value * order.price;
+
+
+
               const resp = await fetch('/cart', {
                 method: 'POST',
                 headers: {
@@ -57,13 +68,19 @@
                 body: JSON.stringify({
                   productId: order.productId,
                   orderId: order._id,
+                  quantity: quantityInput.value,
+                  totalPrice: totalPrice,
+
                 })
               });
+
             }
+
           });
 
           dateTime();
           liveToast.show();
+
         }
 
         window.location.href = "/home";
@@ -89,6 +106,7 @@ let rowCount = 0;
 let productsID = [];
 
 function createCard(name, price, imgSrc, category, productId) {
+
   const cardTemplate = `
     <tr class="key" data-product-id="${productId}">
       <th scope="row" class="border-0">
@@ -142,6 +160,7 @@ function createCard(name, price, imgSrc, category, productId) {
   const deleteButtons = document.querySelectorAll(".delete");
   deleteButtons.forEach(async (deleteButton) => {
     deleteButton.addEventListener("click", async function () {
+      
       const productKey = this.closest(".key");
       const productId = productKey.getAttribute("data-product-id");
       const response = await fetch(`/orders/${productId}`, {
@@ -150,6 +169,14 @@ function createCard(name, price, imgSrc, category, productId) {
       if (response.ok) {
         const rowToRemove = document.querySelector(`tr[data-product-id="${productId}"]`)
         rowToRemove.remove();
+
+        total = calculateTotalPrice();
+      console.log("Total: " + total);
+      let subTotal = document.getElementById("subtotal");
+      let totalPrice = document.getElementById("totalPrice");
+      subTotal.innerText = "$" + total;
+      totalPrice.innerText = "$" + (total + 10);
+
         console.log("Deleted");
       } else {
         console.error("Failed to delete");
