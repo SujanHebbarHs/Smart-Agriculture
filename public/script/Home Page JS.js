@@ -4,10 +4,10 @@
         if (response.ok) {
             const products = await response.json(); // Parse the response as JSON
 
-            if(products.length == 0){
-                document.getElementById("fruitsCardContainer").innerHTML = "<h3 class='text-center lead'>No products to show</h3>";
-                document.getElementById("vegetablesCardContainer").innerHTML = "<h3 class='text-center lead'>No products to show</h3>";
-            }
+            // if(products.length == 0){
+            //     document.getElementById("fruitsCardContainer").innerHTML = "<h3 class='text-center lead'>No products to show</h3>";
+            //     document.getElementById("vegetablesCardContainer").innerHTML = "<h3 class='text-center lead'>No products to show</h3>";
+            // }
 
             products.forEach(product => {
                 const productN = product.name;
@@ -66,11 +66,7 @@ function createCard(name, price, imgSrc, category, productId) {
                 button.classList.remove('btn-success'); // Remove the success class
                 button.classList.add('btn-white-background'); // Add a custom class for white background
                 button.innerHTML = "Added to Cart";
-               
-                const productElement = document.querySelector('.product-box');
-
-                const productId = productElement.getAttribute('data-key');
-
+                console.log("The id is now: "+productId);
 
                 const resp = await fetch('/orders', {
                     method: 'POST',
@@ -88,10 +84,6 @@ function createCard(name, price, imgSrc, category, productId) {
                 button.classList.remove('btn-white-background'); // Remove the success class
                 button.classList.add('btn-success'); // Add a custom class for white background
                 button.innerHTML = "Add to Cart";
-                
-                const productElement = document.querySelector('.product-box');
-
-                const productId = productElement.getAttribute('data-key');
 
                 const respone = await fetch(`/orders/${productId}`, {
                     method: "DELETE",

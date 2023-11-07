@@ -319,19 +319,6 @@ app.get("/requests", auth, (req, res)=>{
 
 });
 
-app.get("/orderRequests", auth, async(req, res)=>{
-
-    try{
-
-        const requests = await Order.find({ownerId: req.user._id});
-        console.log(requests);
-        res.json(requests);
-
-    }catch(err){
-        console.log(err);
-        res.sendStatus(500);
-    }
-});
 
 
 app.get("/listings", async(req, res)=>{
@@ -397,6 +384,7 @@ app.post("/orders", auth, async(req, res)=>{
     try{
 
         const productId = req.body.id;
+        console.log("The id in server is: "+productId);
         const quantity = req.body.quantity;
 
         const buyer = req.user;
@@ -451,7 +439,7 @@ app.get("/orders", auth, async(req, res)=>{
 
     try{
 
-        const myOrders = await Order.find({buyerId: req.user._id, status:"P"});
+        const myOrders = await Order.find({buyerId: req.user._id, status:"Pending"});
         console.log(myOrders);    
         res.json(myOrders);
 
@@ -487,8 +475,37 @@ app.get("/cart", auth, (req, res)=>{
 
 app.post("/cart", auth, async(req, res)=>{
 
-    
+    try{
 
+        const productId = req.body.productId;
+        const orderId = req.body.orderId;
+
+        const resp = await Order.findByIdAndUpdate({_id:orderId},{$set:{status:"Waiting"}});
+        const orderH = await OrderHsitory.find({productId, buyerId:req.user._id});
+        const resp2 = await OrderHsitory.findByIdAndUpdate({_id:orderH._id}, {$set:{status:"Waiting"}});
+
+    res.json({msg:"Sent requested to seller", state:true});
+
+    }catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+
+});
+
+
+app.get("/orderRequests", auth, async(req, res)=>{
+
+    try{
+
+        const requests = await Order.find({ownerId: req.user._id, status:"Waiting"});
+        console.log(requests);
+        res.json(requests);
+
+    }catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
 });
 
 
@@ -523,6 +540,7 @@ app.get("/approval/:id", auth, async(req, res)=>{
         console.log(info);
 
         await Order.findByIdAndDelete({_id: orderId});
+        await OrderHsitory.findOneAndUpdate({ownerId:req.user._id, productId:order.productId, buyerId:order.buyerId},{$set:{status:"Approved"}});
 
         res.json({msg: "Approved"});
 
@@ -562,6 +580,8 @@ app.get("/disapprove/:id", auth, async(req,res)=>{
         console.log(info);
 
         await Order.findByIdAndDelete({_id: orderId});
+        await OrderHsitory.findOneAndUpdate({ownerId:req.user._id, productId:order.productId, buyerId:order.buyerId},{$set:{status:"Rejected"}});
+
 
         res.json({msg: "Rejected"});
 

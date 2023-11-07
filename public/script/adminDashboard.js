@@ -80,6 +80,9 @@
           const respone = await fetch(`/myListings/${product._id}`, {
             method: "DELETE",
           });
+          const response = await fetch(`/orders/${product._id}`, {
+            method: "DELETE",
+          });
           if (respone.ok) {
             console.log("Deleted");
           } else {

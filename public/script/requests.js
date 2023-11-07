@@ -2,7 +2,7 @@ const button = document.getElementById('insertTableData');
 
 (async () => {
     try {
-        const response = await fetch("/orders");
+        const response = await fetch("/orderRequests");
         if (response.ok) {
             const products = await response.json(); // Parse the response as JSON
 

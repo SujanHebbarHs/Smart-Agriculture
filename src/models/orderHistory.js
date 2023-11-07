@@ -36,7 +36,7 @@ const orderHistorySchema = new mongoose.Schema({
     },
     status:{
         type:String,
-        default:"processing",
+        default:"Pending",
     },
     quantity:{
         type:Number,
