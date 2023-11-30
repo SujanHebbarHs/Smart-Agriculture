@@ -20,13 +20,10 @@ The authentication code is present in /src/middleware/auth.js. The reset of Auth
 Handlebars are present in /templates/views
 Navbar is present in /templates/partials
 
-In .env file there is a mail "sharathchandrasharath00007@gmail.com". This is just a temporary email used to send reset links to the users. We will be changing it. Please don't overuse the forgot password feature.
-
 
 DB connection code is present in /src/db/conn.js
 
 After connecting to the DB you can view the data in the DB by connecting to MongoDB compass.
-I will be putting some images of the DB in the DBImages folder.
 
 
 
