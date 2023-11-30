@@ -29,8 +29,8 @@
     flex-direction: column;
     justify-content: center;
     max-width: 1150px;
-    margin: 50px auto;
-    padding: 60px 0px 20px 0px;
+    margin: 30px auto;
+    padding: 50px 0px 20px 0px;
     border-radius: 20px;
     background-color: #ecf7ee;
     border: 1px solid #f3f3f3;
@@ -205,4 +205,13 @@
     left: auto;
     right: 0;
   }
-  
+
+ 
+    #search-banner {
+    height:120px; /* Adjust the height to your preference */
+    }
+      
+    section {
+      margin-bottom: 10px; /* Adjust the space below each section */
+      margin-top: 10px; /* Adjust the space above each section */
+  }

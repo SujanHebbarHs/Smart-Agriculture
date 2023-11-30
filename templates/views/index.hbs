@@ -57,7 +57,7 @@
 
         {{>navbar opt1=opt1 opt2=opt2 opt2=opt3 opt4=opt4 link=link}}
 
-        
+
         <!-- Sidebar -->
 
 
@@ -66,94 +66,42 @@
 
         <section id="about-us" class="shadow-lg pb-2"
             style="background-color:#ecf7ee;max-width:1250px;border-radius:30px;margin:10px auto">
-            <h1 class="text-center pt-2 ">Smart <span class="text-success"> Agriculture </span></h1><br>
+            {{!-- <h1 class="text-center pt-2 ">Smart <span class="text-success"> Agriculture </span></h1><br> --}}
             <div class="container shadow-lg" style="background-color: none; border-radius:30px">
-                <h2 class="pt-5 pb-2">Welcome to Smart Agriculture – Your Source for the Finest Fruits and Vegetables!
+                <h2 class="pt-5 pb-2">Welcome to Smart Agriculture
                 </h2>
-
-                <p class="pb-3">At Smart Agriculture , we are committed to providing you with the freshest,
-                    healthiest, and most
-                    delicious fruits and vegetables available in the United States. Our mission is simple: to bring the
-                    farm-fresh goodness directly to your doorstep, making it easier than ever to enjoy a wide variety of
-                    top-quality produce without leaving the comfort of your home.
-
-                    With a dedication to sustainability, taste, and nutrition, we work closely with local and regional
-                    growers to ensure you receive the very best in-season produce. Whether you're a health-conscious
-                    individual, a culinary enthusiast, or a family looking for wholesome options, we've got a wide
-                    selection
-                    of fruits and vegetables to meet your needs.
-
-                    Explore our website, shop with confidence, and experience the convenience of having nature's bounty
-                    delivered right to your door. Smart Agriculture is your one-stop destination for a healthier,
-                    happier
-                    lifestyle. Start savoring the flavors of fresh, organic, and locally sourced produce today!</p>
-                <h1 >Why Choose Smart Agriculture?</h1> <br>
-                <ul>
-                    <li><strong>Farm-Fresh Quality:</strong> We partner with trusted farmers who prioritize quality and
-                        sustainability, ensuring you get the best fruits and vegetables available.</li>
-                    <li><strong>Wide Variety:</strong> From crisp apples and juicy berries to leafy greens and vibrant
-                        peppers, we offer a diverse range of produce to suit every taste and recipe.</li>
-                    <li><strong>Convenience Redefined:</strong> Say goodbye to long grocery lines and heavy bags. We
-                        deliver directly to your doorstep, saving you time and effort.</li>
-                    
-                    <li><strong>Supporting Local Agriculture:</strong> By choosing Fresh Harvest USA, you support local
-                        farmers and contribute to a more sustainable food system.</li>
-                </ul>
-                <p class="pb-3">Join the Smart Agriculture community and savor the difference that fresh, high-quality
-                    fruits and
-                    vegetables can make in your life. Your journey to healthier, tastier living starts right here with
-                    us!</p>
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="/carousalImages/crops.png" alt="First slide"  width="1110" height="500">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="/carousalImages/Farmer.png" alt="Second slide" width="1110" height="500">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="/carousalImages/main.png" alt="Third slide" width="1110" height="500">
+                        </div>
+                        
+                    </div>
+                </div>
+ 
+            
 
             </div>
-        </section>
-        <!--nav-end-->
-        <!--==Search-banner=======================================-->
+        
+
         <section id="search-banner">
-
-            <!--bg-------->
-
-
-            <!--text---->
             <div class="search-banner-text">
-
-                <h1>
-
-                    Order Your daily Veggies and Fruits
-
-                </h1>
-
-                <strong>
-
-                    #Free Delivery
-
-                </strong>
-
-                <!--search-box------>
+                
                 <form action="" class="search-box" id="search">
-
-                    <!--icon------>
                     <i class="bi bi-search"></i>
-
-                    <!--input----->
                     <input type="text" class="search-input" placeholder="Search" name="search" size="80px" required>
-
-                    <!--btn------->
                     <input type="submit" class="search-btn" value="Search">
-
                 </form>
-
-
-                </h3>
-
             </div>
-            <!--search-banner-end--------------->
         </section>
-
-
-        <!--==category=========================================-->
-
-        <!--category-end-->
-        <!--==Products====================================-->
+       
+        
         <section id="fruits" style="background-color: ecf7ee; max-width:1250px">
             <div class="container">
                 <!-- Heading -->
@@ -169,16 +117,18 @@
             </div>
         </section>
 
+        <hr>
+
         <section id="vegetables" style="display: flex;
     flex-direction: column;
     justify-content: center;
     max-width: 1150px;
-    margin: 50px auto;
-    padding: 60px 0px 20px 0px;
+    margin: 30px auto;
+    padding: 40px 0px 20px 0px;
     border-radius: 20px;
     background-color: #ecf7ee;
     border: 1px solid #f3f3f3;
-    align-items: center;" >
+    align-items: center;">
             <div class="container">
                 <!-- Heading -->
                 <div class="row">
@@ -209,21 +159,22 @@
                 <div class="footer-logo">
                     <a href="/Images/Logo.jpg"><span>Smart</span>Agriculture</a>
                     <!--social----->
-                    <div class="footer-social">
+                    {{!-- <div class="footer-social">
                         <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
                         <a href="https://twitter.com/?lang=en-in"><i class="bi bi-twitter"></i></a>
                         <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
                         <a href="https://www.youtube.com/"><i class="bi bi-youtube"></i></a>
-                    </div>
+                    </div> --}}
                 </div>
                 <!--links------------------------->
                 <div class="footer-links">
-                    <strong>Product</strong>
-                    <ul>
-                        <li><a href="#">Fruits</a></li>
-                        <li><a href="#">vegetables</a></li>
+                    <strong>Team 15</strong>
+                    <ol>
+                        <li><a href="#"> Bhavana Bychanahalli Keshavegowda</a></li>
+                        <li><a href="#">Kushal Nagaraju</a></li>
 
-                    </ul>
+                        </li>
+                    </ol>
                 </div>
                 <!--links------------------------->
 
@@ -231,16 +182,22 @@
                 <div class="footer-links">
                     <strong>Contact</strong>
                     <ul>
-                        <li><a href="#">Phone : +1 NXX NXX-XXXX</a></li>
-                        <li><a href="#">Email : xyz@gmail.com</a></li>
+                        <li><a href="#">Phone : +1 682 313-1769</a></li>
+                        <li><a href="#">Email :bhavanakgowda1998@gmail.com</a></li>
 
                         </li>
                     </ul>
                     <br>
-                    <p style="color: aliceblue;">Copyright ©2023 | All Rights Reserved</p>
+                    
                 </div>
             </div>
         </footer>
+        <script>
+                    // JavaScript to initialize the carousel and set the interval
+                    $('.carousel').carousel({
+                        interval: 3000 // Set the interval to 3000 milliseconds (3 seconds)
+                    });
+                </script>
     </body>
 
     </html>
