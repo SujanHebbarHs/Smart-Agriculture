@@ -30,4 +30,4 @@ After connecting to the DB you can view the data in the DB by connecting to Mong
 1.Open the terminal of VS Code
 2.Type npm install and run the command in terminal. All the dependencies will be installed.
 3.Type npm run dev to run the website in development. You should see the message "The server is running on port:3000. Connection to DB successful"
-4.Perform the operations
+4.Perform the operations.
